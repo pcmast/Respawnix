@@ -7,10 +7,10 @@ public class VideoJuego {
     private String descripcion;
     private String genero;
     private String plataforma;
-    private String precio;
+    private Double precio;
     private String imagen;
 
-    public VideoJuego(String nombre, String descripcion, String genero, String plataforma, String precio, String imagen) {
+    public VideoJuego(String nombre, String descripcion, String genero, String plataforma, Double precio, String imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.genero = genero;
@@ -54,12 +54,12 @@ public class VideoJuego {
         this.plataforma = plataforma;
     }
 
-    public String getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(TextField precio) {
-        this.precio = String.valueOf(precio);
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
     public String getImage() {

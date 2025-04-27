@@ -13,12 +13,14 @@
    <children>
       <Pane prefHeight="686.0" prefWidth="751.0">
          <children>
-            <TextField fx:id="nombre" layoutX="297.0" layoutY="128.0" promptText="Nombre" />
             <Label alignment="CENTER" layoutX="297.0" layoutY="25.0" text="Registrate">
                <font>
                   <Font size="34.0" />
                </font>
             </Label>
+            <TextField fx:id="nombre" layoutX="297.0" layoutY="128.0" promptText="Nombre" />
+            <TextField fx:id="apellidos" layoutX="297.0" layoutY="170.0" promptText="Apellidos" />
+            <DatePicker fx:id="fechaNacimiento" layoutX="296.0" layoutY="212.0" promptText="Fecha Nacimiento" />
             <TextField fx:id="emailAccount" layoutX="298.0" layoutY="261.0" promptText="Email" />
             <PasswordField fx:id="password" layoutX="297.0" layoutY="303.0" promptText="Password" />
             <PasswordField fx:id="repeatPassword" layoutX="297.0" layoutY="358.0" promptText="Retype Password" />
@@ -33,8 +35,6 @@
             <Label layoutX="298.0" layoutY="111.0" text="Nombre" />
             <Label layoutX="295.0" layoutY="153.0" text="Apellidos" />
             <Label layoutX="296.0" layoutY="195.0" text="Fecha Nacimiento" />
-            <TextField fx:id="apellidos" layoutX="297.0" layoutY="170.0" promptText="Apellidos" />
-            <DatePicker fx:id="fechaNacimiento" layoutX="296.0" layoutY="212.0" promptText="Fecha Nacimiento" />
             <Button layoutX="329.0" layoutY="448.0" mnemonicParsing="false" onAction="#createAccount" text="Crear Cuenta" />
          </children>
       </Pane>

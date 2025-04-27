@@ -53,6 +53,16 @@ public class IniciarSesionController {
     }
 
     private void iniciarSesionDeCliente(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaInterfazUsuario.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = null;
+            scene = new Scene(loader.load());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

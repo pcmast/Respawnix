@@ -11,4 +11,5 @@ module com.proyecto3evaluacion.respawnix {
     exports com.proyecto3evaluacion.respawnix.controller;
     opens com.proyecto3evaluacion.respawnix.controller to javafx.fxml;
     opens com.proyecto3evaluacion.respawnix.baseDatos to java.xml.bind;
+    opens com.proyecto3evaluacion.respawnix.model to java.xml.bind;
 }

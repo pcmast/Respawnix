@@ -1,37 +1,51 @@
 package com.proyecto3evaluacion.respawnix.controller;
 
+import com.proyecto3evaluacion.respawnix.DAO.VideoJuegoDAO;
 import com.proyecto3evaluacion.respawnix.RespawnixApplication;
 import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuAnnadirJuegoController {
 
-    public TextField nombreJuego;
-    public TextField plataformaDelJuego;
-    public TextField generoJuego;
-    public TextField precioDelJuego;
-    public TextField descripcionJuego;
-    public ImageView imageViewJuego;
+    @FXML
+    private TextField nombreJuego;
+    @FXML
+    private TextField plataformaDelJuego;
+    @FXML
+    private TextField generoJuego;
+    @FXML
+    private TextField precioDelJuego;
+    @FXML
+    private TextField descripcionJuego;
+    @FXML
+    private ImageView imageViewJuego;
+    private String rutaImagenJuego;
+
     private ObservableList<VideoJuego> list = FXCollections.observableArrayList();
     private Stage stage;
     private VideoJuego videoJuego;
+
 
     public void botonSubirImagen(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -39,30 +53,49 @@ public class MenuAnnadirJuegoController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png")
         );
+
         File selectedFile = fileChooser.showOpenDialog(null);
-        File destinationFolder = new File("IdeaProjects\\Respawnix\\images");
-        File destinationFile = new File(destinationFolder, selectedFile.getName());
 
-        try {
+        if (selectedFile != null) {
 
-            Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
+            File destinationFolder = new File(System.getProperty("user.dir") + File.separator + "images");
+
+            if (!destinationFolder.exists()) {
+                destinationFolder.mkdirs();
+            }
+
+            File destinationFile = new File(destinationFolder, selectedFile.getName());
+
+            try {
+                Files.copy(selectedFile.toPath(), Paths.get("images", selectedFile.getName()), StandardCopyOption.REPLACE_EXISTING);
+
+                rutaImagenJuego = Paths.get("images", selectedFile.getName()).toString();
+
+                imageViewJuego.setImage(new Image(new File(rutaImagenJuego).toURI().toString()));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
-
-
     }
-
     public VideoJuego anadirJuego() {
         videoJuego = new VideoJuego();
+        String nombre = nombreJuego.getText();
+        String plataforma = plataformaDelJuego.getText();
+        String genero = generoJuego.getText();
+        Double precio = Double.valueOf(precioDelJuego.getText());
+        String descripcion = descripcionJuego.getText();
+        String imagen = rutaImagenJuego;
 
-        videoJuego.setNombre(String.valueOf(nombreJuego));
-        videoJuego.setPlataforma(String.valueOf(plataformaDelJuego));
-        videoJuego.setGenero(String.valueOf(generoJuego));
+        videoJuego.setNombre(nombre);
+        videoJuego.setPlataforma(plataforma);
+        videoJuego.setGenero(genero);
 
-        videoJuego.setPrecio(precioDelJuego);
-        videoJuego.setDescripcion(String.valueOf(descripcionJuego));
+        videoJuego.setPrecio(precio);
+        videoJuego.setDescripcion(descripcion);
 
+        VideoJuegoDAO.insertarJuego(nombre,descripcion,genero,plataforma,precio,imagen);
         return videoJuego;
     }
 
@@ -85,5 +118,9 @@ public class MenuAnnadirJuegoController {
         }
 
 
+    }
+
+    public void cancelarAnnadir(ActionEvent actionEvent) {
+        stage.close();
     }
 }

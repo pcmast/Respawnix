@@ -3,7 +3,9 @@ package com.proyecto3evaluacion.respawnix.controller;
 import com.proyecto3evaluacion.respawnix.DAO.AdministradorDAO;
 import com.proyecto3evaluacion.respawnix.DAO.UsuarioDAO;
 import com.proyecto3evaluacion.respawnix.RespawnixApplication;
+import com.proyecto3evaluacion.respawnix.baseDatos.ConnectionProperties;
 import com.proyecto3evaluacion.respawnix.baseDatos.XMLManager;
+import com.proyecto3evaluacion.respawnix.model.ClaveWrapper;
 import com.proyecto3evaluacion.respawnix.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,7 +88,9 @@ public class RegistrarseController {
             }
         }
         UsuarioDAO.insertarUsuarios(nombreUsuario,apellidosUsuario,fecha,email,contrasenna);
-        String claveXML = XMLManager.readXML(clave,"clave.xml");
+        ClaveWrapper wrapper = XMLManager.readXML(new ClaveWrapper(),"clave.xml");
+        String claveXML = wrapper.getValue();
+
         if (clave.equals(claveXML)){
             AdministradorDAO.insertarAdministrador(email);
         }
