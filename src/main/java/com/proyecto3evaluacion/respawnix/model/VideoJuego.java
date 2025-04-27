@@ -1,22 +1,22 @@
 package com.proyecto3evaluacion.respawnix.model;
 
-import javafx.scene.image.Image;
+import javafx.scene.control.TextField;
 
 public class VideoJuego {
     private String nombre;
     private String descripcion;
     private String genero;
     private String plataforma;
-    private double precio;
-    private Image image;
+    private String precio;
+    private String imagen;
 
-    public VideoJuego(String nombre, String descripcion, String genero, String plataforma, double precio, Image image) {
+    public VideoJuego(String nombre, String descripcion, String genero, String plataforma, String precio, String imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.genero = genero;
         this.plataforma = plataforma;
         this.precio = precio;
-        this.image = image;
+        this.imagen = imagen;
     }
 
     public VideoJuego() {
@@ -54,21 +54,25 @@ public class VideoJuego {
         this.plataforma = plataforma;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecio(TextField precio) {
+        this.precio = String.valueOf(precio);
     }
 
-    public Image getImage() {
-        return image;
+    public String getImage() {
+        return imagen;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 
+    @Override
+    public String toString() {
+        return this.nombre + " " + this.precio;
+    }
 }

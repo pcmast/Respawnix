@@ -12,7 +12,7 @@ public class RespawnixApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaIniciarSesion.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 390, 340);
-        stage.setTitle("Iniciar Sesion");
+        stage.setTitle("Respawnix");
         stage.setScene(scene);
         stage.show();
     }
