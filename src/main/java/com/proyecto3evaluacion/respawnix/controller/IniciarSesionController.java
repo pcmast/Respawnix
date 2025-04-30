@@ -39,6 +39,8 @@ public class IniciarSesionController {
 
         for (Usuario usuario : list) {
             if (usuario.getEmail().equals(email) && usuario.getPassword().equals(password)) {
+                UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
+                usuarioActualController.setUsuario(usuario);
                 for (Administrador administrador : administradors) {
                     if (administrador.getEmailUsuario().equals(email)) {
                         iniciarSesionExitosoAdministrador(event);
