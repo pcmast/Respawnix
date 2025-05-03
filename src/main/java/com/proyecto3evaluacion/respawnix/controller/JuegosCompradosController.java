@@ -6,7 +6,9 @@ import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 import com.proyecto3evaluacion.respawnix.model.VideoJuegoComprado;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
@@ -32,6 +34,13 @@ public class JuegosCompradosController {
     }
 
 
+    public void mostrarAcercaDe(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Acerca de");
+        alert.setHeaderText("Respawnix");
+        alert.setContentText("Respawnix tienda de videojuegos desarrollada por Pedro Castaño Marín");
+        alert.showAndWait();
+    }
 
 
 }

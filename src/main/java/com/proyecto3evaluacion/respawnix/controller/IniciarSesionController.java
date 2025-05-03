@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 
 public class IniciarSesionController {
     @FXML
+    private Label emailContraseIncorrecto;
+    @FXML
     private TextField emailTextField;
     @FXML
     private PasswordField passwordField;
@@ -32,7 +35,7 @@ public class IniciarSesionController {
     public void iniciarSesion(ActionEvent event) {
         String email = emailTextField.getText();
         String password = passwordField.getText();
-
+        boolean existe = false;
 
         ArrayList<Usuario> list = (ArrayList<Usuario>) UsuarioDAO.todosUsuarios();
         ArrayList<Administrador> administradors = (ArrayList<Administrador>) AdministradorDAO.todosAdministradores();
@@ -41,6 +44,7 @@ public class IniciarSesionController {
             if (usuario.getEmail().equals(email) && usuario.getPassword().equals(password)) {
                 UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
                 usuarioActualController.setUsuario(usuario);
+                existe = true;
                 for (Administrador administrador : administradors) {
                     if (administrador.getEmailUsuario().equals(email)) {
                         iniciarSesionExitosoAdministrador(event);
@@ -49,8 +53,12 @@ public class IniciarSesionController {
                 }
             }
         }
+        if (existe){
+            iniciarSesionDeCliente(event);
+        }else {
+        emailContraseIncorrecto.setText("Contraseña o email incorrecto");
+        }
 
-        iniciarSesionDeCliente(event);
 
     }
 
@@ -61,6 +69,7 @@ public class IniciarSesionController {
             Scene scene = null;
             scene = new Scene(loader.load());
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -70,12 +79,13 @@ public class IniciarSesionController {
 
     private void iniciarSesionExitosoAdministrador(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaMenuPeliculas.fxml"));
+            FXMLLoader loader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaMenuVideoJuegos.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = null;
             scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.show();
+            stage.centerOnScreen();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -90,6 +100,7 @@ public class IniciarSesionController {
             Scene scene = null;
             scene = new Scene(loader.load());
             Stage stage = new Stage();
+            stage.setTitle("Registrate");
             stage.setScene(scene);
             stage.showAndWait();
 

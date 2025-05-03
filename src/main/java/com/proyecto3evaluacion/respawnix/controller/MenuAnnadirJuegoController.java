@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -94,8 +95,12 @@ public class MenuAnnadirJuegoController {
 
         videoJuego.setPrecio(precio);
         videoJuego.setDescripcion(descripcion);
+        videoJuego.setImagen(imagen);
+
+
 
         VideoJuegoDAO.insertarJuego(nombre,descripcion,genero,plataforma,precio,imagen);
+
         return videoJuego;
     }
 
@@ -122,5 +127,13 @@ public class MenuAnnadirJuegoController {
 
     public void cancelarAnnadir(ActionEvent actionEvent) {
         stage.close();
+    }
+
+    public void mostrarAcercaDe(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Acerca de");
+        alert.setHeaderText("Respawnix");
+        alert.setContentText("Respawnix tienda de videojuegos desarrollada por Pedro Castaño Marín");
+        alert.showAndWait();
     }
 }

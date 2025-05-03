@@ -32,51 +32,42 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.InterfazUsuarioController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.InterfazUsuarioController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="Juegos Comprados">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
+            <MenuItem mnemonicParsing="false" onAction="#mostrarJuegosComprados" text="Juegos" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" onAction="#mostrarAcercaDe" text="Acerca de" />
           </items>
         </Menu>
+            <Menu mnemonicParsing="false" text="Cerrar Sesión">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#cerrarSesionUsuario" text="Cerrar Sesión" />
+              </items>
+            </Menu>
       </menus>
     </MenuBar>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
@@ -103,12 +94,15 @@
                         <Label layoutX="428.0" layoutY="500.0" text="Precio:" />
                         <Label fx:id="precioJuego" layoutX="473.0" layoutY="500.0" />
                         <Button layoutX="525.0" layoutY="496.0" mnemonicParsing="false" onAction="#annadirALaCesta" text="AÑADIR A LA CESTA" />
-                        <Label layoutX="42.0" layoutY="445.0" text="Descripción:" />
-                        <Label fx:id="descripcionJuego" alignment="TOP_LEFT" layoutX="107.0" layoutY="445.0" prefHeight="72.0" prefWidth="294.0" />
+                        <Label layoutX="42.0" layoutY="373.0" text="Descripción:" />
+                        <Label fx:id="descripcionJuego" alignment="TOP_LEFT" layoutX="122.0" layoutY="365.0" prefHeight="72.0" prefWidth="515.0" wrapText="true" />
                         <Label layoutX="52.0" layoutY="90.0" text="Genero:" />
                         <Label fx:id="generoJuego" layoutX="98.0" layoutY="91.0" />
                         <Label layoutX="51.0" layoutY="120.0" text="Plataforma:" />
                         <Label fx:id="plataformaJuego" layoutX="122.0" layoutY="121.0" />
+                        <Label fx:id="videoJuegoAnnadido" layoutX="529.0" layoutY="449.0" prefHeight="18.0" prefWidth="124.0" textFill="#001aff" />
+                        <Label layoutX="525.0" layoutY="472.0" text="Cantidad:" />
+                        <TextField fx:id="cantidadAComprar" layoutX="582.0" layoutY="468.0" prefHeight="26.0" prefWidth="60.0" text="1" />
                      </children>
             </AnchorPane>
           </content>
@@ -119,8 +113,8 @@
       <children>
         <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button layoutY="-2.0" mnemonicParsing="false" onAction="#comprar" text="COMPRAR" />
-                  <Button layoutX="817.0" mnemonicParsing="false" onAction="#verPerfil" text="VerPERFIL" />
+                  <Button layoutX="1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#comprar" text="Lista de Compra" />
+                  <Button layoutX="826.0" layoutY="-1.0" mnemonicParsing="false" onAction="#verPerfil" text="Mi Perfil" />
                </children></Pane>
       </children>
       <padding>

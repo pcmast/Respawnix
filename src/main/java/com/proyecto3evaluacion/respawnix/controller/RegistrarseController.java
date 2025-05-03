@@ -29,6 +29,20 @@ public class RegistrarseController {
 
 
     @FXML
+    private Label claveErronea;
+    @FXML
+    private Label fechaVacia;
+    @FXML
+    private Label nombreVacio;
+    @FXML
+    private Label apellidosVacios;
+    @FXML
+    private Label emailVacio;
+    @FXML
+    private Label contrasennaVacia;
+    @FXML
+    private Label repetirContrasennaVacia;
+    @FXML
     private TextField nombre;
     @FXML
     private TextField apellidos;
@@ -55,10 +69,10 @@ public class RegistrarseController {
         Stage stage = new Stage();
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 390, 340);
+            scene = new Scene(fxmlLoader.load());
             stage.setTitle("Iniciar Sesion");
             stage.setScene(scene);
-            stage.show();
+            stage.showAndWait();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -75,10 +89,57 @@ public class RegistrarseController {
         String apellidosUsuario = apellidos.getText();
         LocalDate fecha = fechaNacimiento.getValue();
         String clave = claveAdministrador.getText();
+        int seguir = 0;
+        ClaveWrapper wrapper = XMLManager.readXML(new ClaveWrapper(),"clave.xml");
+        String claveXML = wrapper.getValue();
+
+        if (email.isEmpty()){
+            emailVacio.setText("Introduce un email");
+        }else {
+            emailVacio.setText("");
+            seguir+=1;
+        }
+        if (contrasenna.isEmpty()){
+            contrasennaVacia.setText("Introduce la contraseña");
+        }else {
+            contrasennaVacia.setText("");
+            seguir+=1;
+        }
+        if (nombreUsuario.isEmpty()){
+            nombreVacio.setText("Debes Introducir tu nombre");
+        }else {
+            nombreVacio.setText("");
+            seguir+=1;
+        }
+        if (apellidosUsuario.isEmpty()){
+            apellidosVacios.setText("Introduce tus apellidos");
+        }else {
+            apellidosVacios.setText("");
+            seguir+=1;
+        }
+
+        if (fecha == null){
+            fechaVacia.setText("Introduce tu fecha");
+        }else {
+            fechaVacia.setText("");
+            seguir+=1;
+        }
+        if (repetirContrasenna.isEmpty()){
+            repetirContrasennaVacia.setText("Debes repetir la contraseña");
+        }
+        if (clave.equals(claveXML)){
+            claveErronea.setText("");
+        }else {
+            claveErronea.setText("Las claves no coinciden");
+            seguir = 0;
+        }
+
 
         if (!contrasenna.equals(repetirContrasenna)){
             contrasennaNoCoincide.setText("Las Contraseñas no Coinciden");
+            seguir = 0;
         }
+        if(seguir == 5){
 
         ArrayList<Usuario> list = (ArrayList<Usuario>) UsuarioDAO.todosUsuarios();
 
@@ -87,13 +148,9 @@ public class RegistrarseController {
                 crearCuenta = false;
             }
         }
-        UsuarioDAO.insertarUsuarios(nombreUsuario,apellidosUsuario,fecha,email,contrasenna);
-        ClaveWrapper wrapper = XMLManager.readXML(new ClaveWrapper(),"clave.xml");
-        String claveXML = wrapper.getValue();
-
-        if (clave.equals(claveXML)){
+            UsuarioDAO.insertarUsuarios(nombreUsuario,apellidosUsuario,fecha,email,contrasenna);
             AdministradorDAO.insertarAdministrador(email);
-        }
+
 
         if (!crearCuenta){
             correoExistente.setText("Correo ya existe en el sistema");
@@ -107,16 +164,16 @@ public class RegistrarseController {
             Stage stage = new Stage();
             Scene scene = null;
             try {
-                scene = new Scene(fxmlLoader.load(), 390, 340);
+                scene = new Scene(fxmlLoader.load());
                 stage.setTitle("Iniciar Sesion");
                 stage.setScene(scene);
-                stage.show();
+                stage.showAndWait();
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
-
+        }
     }
 }

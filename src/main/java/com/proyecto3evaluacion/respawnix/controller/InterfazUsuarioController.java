@@ -1,16 +1,18 @@
 package com.proyecto3evaluacion.respawnix.controller;
 
+import com.proyecto3evaluacion.respawnix.DAO.CestaCompraDAO;
 import com.proyecto3evaluacion.respawnix.DAO.VideoJuegoDAO;
 import com.proyecto3evaluacion.respawnix.RespawnixApplication;
+import com.proyecto3evaluacion.respawnix.model.CestaCompra;
 import com.proyecto3evaluacion.respawnix.model.VideoJuego;
+import com.proyecto3evaluacion.respawnix.utils.Utilidades;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -19,9 +21,12 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class InterfazUsuarioController {
+
+    public Label videoJuegoAnnadido;
+    public TextField cantidadAComprar;
+
 
     @FXML
     private ImageView imagen;
@@ -50,6 +55,11 @@ public class InterfazUsuarioController {
         imagen.setImage(image);
 
         listaJuegosAComprar.setItems(videoJuegos);
+        if (!listaJuegosAComprar.getItems().isEmpty()) {
+            listaJuegosAComprar.getSelectionModel().selectFirst();
+            barraLateralInfo(listaJuegosAComprar.getSelectionModel().getSelectedItem());
+        }
+
     }
 
     /**
@@ -93,7 +103,7 @@ public class InterfazUsuarioController {
                 stage.setScene(scene);
                 stage.setTitle("respawnix");
                 stage.setOnCloseRequest(event -> stage = null);
-                stage.show();
+                stage.showAndWait();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -112,7 +122,7 @@ public class InterfazUsuarioController {
                 stage.setScene(scene);
                 stage.setTitle("respawnix");
                 stage.setOnCloseRequest(event -> stage = null);
-                stage.show();
+                stage.showAndWait();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -121,9 +131,58 @@ public class InterfazUsuarioController {
     }
 
     public void annadirALaCesta(ActionEvent actionEvent) {
+        if (Utilidades.validarNumero(cantidadAComprar.getText())){
+        VideoJuego seleccionado = listaJuegosAComprar.getSelectionModel().getSelectedItem();
+        UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
+        CestaCompra.setEmailUsuario(usuarioActualController.getUsuario().getEmail());
+        CestaCompra.annadir(seleccionado.getNombre());
+
+        CestaCompraDAO.actualizarEnLaLista(usuarioActualController.getUsuario().getEmail(), seleccionado.getNombre(), Integer.parseInt(cantidadAComprar.getText()));
+        videoJuegoAnnadido.setText("Añadido a la cesta");
+        }else {
+            videoJuegoAnnadido.setText("Cantidad no válida");
+        }
+    }
 
 
 
+
+    public void mostrarAcercaDe(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Acerca de");
+        alert.setHeaderText("Respawnix");
+        alert.setContentText("Respawnix tienda de videojuegos desarrollada por Pedro Castaño Marín");
+        alert.showAndWait();
+    }
+
+    public void cerrarSesionUsuario(ActionEvent actionEvent) {
+        UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
+        usuarioActualController.setUsuario(null);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaIniciarSesion.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            stage = (Stage) listaJuegosAComprar.getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarJuegosComprados(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaJuegosComprados.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.centerOnScreen();
+            newStage.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

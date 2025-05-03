@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -32,12 +33,17 @@ public class MenuJuegosController {
     public Label descripcionLabel;
     public ImageView imagenJuego;
     private ObservableList<VideoJuego> videoJuegos = cargarLista();
-
+    private Stage stage;
 
     public void initialize() {
         mostrarJuegosAnadidos.setItems(videoJuegos);
+        if (!mostrarJuegosAnadidos.getItems().isEmpty()) {
+            mostrarJuegosAnadidos.getSelectionModel().selectFirst();
+            barraLateralInfo(mostrarJuegosAnadidos.getSelectionModel().getSelectedItem());
+        }
     }
-    public ObservableList<VideoJuego> cargarLista(){
+
+    public ObservableList<VideoJuego> cargarLista() {
         ArrayList<VideoJuego> list = (ArrayList<VideoJuego>) VideoJuegoDAO.todosLosJuegos();
         ObservableList<VideoJuego> lista = FXCollections.observableArrayList();
         lista.addAll(list);
@@ -47,10 +53,11 @@ public class MenuJuegosController {
 
     /**
      * Metodo que muestra en la barra de la informacion de los juegos todos los datos del juego
+     *
      * @param videoJuego recibe como parametro el videojuego que va a mostrar en la interfaz grafica
      */
-    public void barraLateralInfo(VideoJuego videoJuego){
-        if (videoJuego != null){
+    public void barraLateralInfo(VideoJuego videoJuego) {
+        if (videoJuego != null) {
             nombreLabel.setText(videoJuego.getNombre());
             precioLabel.setText(String.valueOf(videoJuego.getPrecio()));
             plataformaLabel.setText(videoJuego.getPlataforma());
@@ -70,18 +77,17 @@ public class MenuJuegosController {
 
     public void botonAnadir(ActionEvent actionEvent) {
         try {
-
             FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaAnadirJuego.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
+            stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Añadir Juego");
 
-            Stage newStage = new Stage();
-            newStage.setScene(scene);
-            newStage.setTitle("Añadir Juego");
+            stage.showAndWait();
 
-            newStage.show();
             MenuAnnadirJuegoController controller = fxmlLoader.getController();
             controller.setListaVideoJuegos(videoJuegos);
-            controller.setStage(newStage);
+            controller.setStage(stage);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -89,11 +95,57 @@ public class MenuJuegosController {
     }
 
     public void botonEliminar(ActionEvent actionEvent) {
+        VideoJuego videoJuegoSeleccionado = mostrarJuegosAnadidos.getSelectionModel().getSelectedItem();
+        if (videoJuegoSeleccionado != null) {
+            videoJuegos.remove(videoJuegoSeleccionado);
+            barraLateralInfo(null);
+            VideoJuegoDAO.eliminarJuego(videoJuegoSeleccionado);
+        }
+
 
     }
 
-    public void botonEditar(ActionEvent actionEvent) {
+
+
+    public void mostrarAcercaDe(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Acerca de");
+        alert.setHeaderText("Respawnix");
+        alert.setContentText("Respawnix tienda de videojuegos desarrollada por Pedro Castaño Marín");
+        alert.showAndWait();
     }
 
+    public void cerrarSesionUsuario(ActionEvent actionEvent) {
+        UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
+        usuarioActualController.setUsuario(null);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaIniciarSesion.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            stage = (Stage) mostrarJuegosAnadidos.getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public void verPerfil(ActionEvent actionEvent) {
+        if (stage == null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaPerfilUsuario.fxml"));
+                Scene scene = null;
+                scene = new Scene(fxmlLoader.load());
+                stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("respawnix");
+                stage.setOnCloseRequest(event -> stage = null);
+                stage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
 }

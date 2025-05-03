@@ -14,6 +14,8 @@ public class VideoJuegoDAO {
 
     private final static String SQL_ALL = "select * from videojuego";
     private final static String SQL_INSERT = "INSERT INTO videojuego (nombre, descripcion, genero, plataforma, precio, Imagen) VALUES (?, ?, ?, ?, ?, ?)";
+    private final static String SQL_DELETE = "DELETE FROM videojuego WHERE nombre = ? AND descripcion = ? AND genero = ? AND plataforma = ? AND precio = ? AND imagen = ?";
+
 
 
     public static List<VideoJuego> todosLosJuegos() {
@@ -53,6 +55,24 @@ public class VideoJuegoDAO {
             stmt.executeUpdate();
 
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void eliminarJuego(VideoJuego videoJuego){
+        Connection con = ConnectionDB.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(SQL_DELETE);
+            stmt.setString(1, videoJuego.getNombre());
+            stmt.setString(2, videoJuego.getDescripcion());
+            stmt.setString(3, videoJuego.getGenero());
+            stmt.setString(4, videoJuego.getPlataforma());
+            stmt.setDouble(5, videoJuego.getPrecio());
+            stmt.setString(6, videoJuego.getImage());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

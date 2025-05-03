@@ -10,8 +10,9 @@ import java.util.List;
 
 public class VideoJuegoCompradoDAO {
 
-    private final static String SQL_ALL = "select * from videojuegocomprados";
-    private final static String SQL_INSERT = "INSERT INTO videojuego (emailUsuario, NombreJuego) VALUES (?, ?)";
+    private final static String SQL_ALL = "select * from videojuegoscomprados";
+    private final static String SQL_INSERT = "INSERT INTO videojuegoscomprados (emailUsuario, NombreJuego, precioJuego, precioTotal, cantidad) VALUES (?, ?, ?, ?, ?)";
+
 
 
     public static List<VideoJuegoComprado> todosLosJuegosComprados() {
@@ -33,13 +34,16 @@ public class VideoJuegoCompradoDAO {
         return juegos;
     }
 
-    public static void insertarJuegoComprado(String nombre, String email){
+    public static void insertarJuegoComprado(String emailUsuario, String nombreJuego, double precioJuego, double precioTotal, int cantidad){
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(SQL_INSERT);
-            stmt.setString(1, nombre);
-            stmt.setString(2,email);
+            stmt.setString(1, emailUsuario);
+            stmt.setString(2,nombreJuego);
+            stmt.setDouble(3,precioJuego);
+            stmt.setDouble(4,precioTotal);
+            stmt.setInt(5,cantidad);
             stmt.executeUpdate();
 
 
