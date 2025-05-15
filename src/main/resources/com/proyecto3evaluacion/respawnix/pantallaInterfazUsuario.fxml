@@ -32,13 +32,24 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.InterfazUsuarioController">
+<VBox prefHeight="618.0" prefWidth="900.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.InterfazUsuarioController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -64,35 +75,36 @@
         <AnchorPane>
                <children>
                   <ListView fx:id="listaJuegosAComprar" layoutX="11.0" layoutY="63.0" onMouseClicked="#mostrarEnLaBarra" prefHeight="476.0" prefWidth="200.0" />
-                  <Label layoutX="40.0" text="VIDEOJUEGOS">
+                  <Label layoutX="40.0" layoutY="2.0" styleClass="titulo" text="VIDEOJUEGOS">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="buscar" layoutX="61.0" layoutY="32.0" onKeyPressed="#buscarJuegos" promptText="Buscar" />
+                  <TextField fx:id="buscar" layoutX="53.0" layoutY="30.0" onKeyPressed="#buscarJuegos" prefHeight="31.0" prefWidth="157.0" promptText="Buscar" styleClass="custom-text-field" />
                   <ImageView fx:id="imagen" fitHeight="30.0" fitWidth="42.0" layoutX="11.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="vacio" layoutX="24.0" layoutY="254.0" />
                </children>
         </AnchorPane>
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+        <ScrollPane prefHeight="505.0" prefWidth="670.0">
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="546.0" prefWidth="670.0" style="-fx-background-color: #D3D3D3;">
                      <children>
                         <Label layoutX="18.0" layoutY="48.0" text="Nombre:" />
                         <Label fx:id="nombreJuego" layoutX="67.0" layoutY="48.0" />
-                        <ImageView fx:id="imagenJuego" fitHeight="222.0" fitWidth="231.0" layoutX="389.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="428.0" layoutY="500.0" text="Precio:" />
-                        <Label fx:id="precioJuego" layoutX="473.0" layoutY="500.0" />
-                        <Button layoutX="525.0" layoutY="496.0" mnemonicParsing="false" onAction="#annadirALaCesta" text="AÑADIR A LA CESTA" />
+                        <ImageView fx:id="imagenJuego" fitHeight="222.0" fitWidth="231.0" layoutX="410.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" styleClass="imagen-juego" />
+                        <Label layoutX="362.0" layoutY="500.0" text="Precio:" />
+                        <Label fx:id="precioJuego" layoutX="404.0" layoutY="500.0" />
+                        <Button layoutX="476.0" layoutY="486.0" mnemonicParsing="false" onAction="#annadirALaCesta" styleClass="custom-button" text="AÑADIR A LA CESTA" />
                         <Label layoutX="42.0" layoutY="373.0" text="Descripción:" />
                         <Label fx:id="descripcionJuego" alignment="TOP_LEFT" layoutX="122.0" layoutY="365.0" prefHeight="72.0" prefWidth="515.0" wrapText="true" />
                         <Label layoutX="21.0" layoutY="91.0" text="Genero:" />
                         <Label fx:id="generoJuego" layoutX="67.0" layoutY="91.0" />
                         <Label layoutX="21.0" layoutY="121.0" text="Plataforma:" />
                         <Label fx:id="plataformaJuego" layoutX="83.0" layoutY="121.0" />
-                        <Label fx:id="videoJuegoAnnadido" layoutX="529.0" layoutY="449.0" prefHeight="18.0" prefWidth="124.0" textFill="#001aff" />
-                        <Label layoutX="525.0" layoutY="472.0" text="Cantidad:" />
-                        <TextField fx:id="cantidadAComprar" layoutX="582.0" layoutY="468.0" prefHeight="26.0" prefWidth="60.0" text="1" />
+                        <Label fx:id="videoJuegoAnnadido" layoutX="529.0" layoutY="438.0" prefHeight="18.0" prefWidth="124.0" textFill="#001aff" />
+                        <Label layoutX="525.0" layoutY="460.0" text="Cantidad:" />
+                        <TextField fx:id="cantidadAComprar" layoutX="582.0" layoutY="456.0" prefHeight="26.0" prefWidth="60.0" text="1" />
+                        <Label layoutX="435.0" layoutY="500.0" text="€" />
                      </children>
             </AnchorPane>
           </content>
@@ -101,10 +113,10 @@
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
       <children>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+        <Pane prefHeight="82.0" prefWidth="894.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button layoutX="1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#comprar" text="Lista de Compra" />
-                  <Button layoutX="826.0" layoutY="-1.0" mnemonicParsing="false" onAction="#verPerfil" text="Mi Perfil" />
+                  <Button layoutX="1.0" layoutY="4.0" mnemonicParsing="false" onAction="#comprar" prefHeight="18.0" prefWidth="163.0" styleClass="custom-button" text="Lista de Compra" />
+                  <Button layoutX="833.0" layoutY="5.0" mnemonicParsing="false" onAction="#verPerfil" prefHeight="36.0" prefWidth="54.0" styleClass="custom-button" text="👤" />
                </children></Pane>
       </children>
       <padding>
