@@ -48,7 +48,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.MenuJuegosController">
+<VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.MenuJuegosController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -69,17 +69,17 @@
         <AnchorPane>
           <children>
                   <ListView fx:id="mostrarJuegosAnadidos" layoutX="11.0" layoutY="70.0" onMouseClicked="#mostrarEnLaBarraLateral" prefHeight="460.0" prefWidth="200.0" />
-                  <Label layoutX="41.0" layoutY="7.0" text="VIDEOJUEGOS">
+                  <Label layoutX="41.0" layoutY="7.0" styleClass="titulo" text="VIDEOJUEGOS">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="buscar" layoutX="60.0" layoutY="40.0" onKeyPressed="#buscarJuegos" />
+                  <TextField fx:id="buscar" layoutX="55.0" layoutY="37.0" onKeyPressed="#buscarJuegos" prefHeight="31.0" prefWidth="152.0" promptText="Buscar" styleClass="custom-text-field" />
                   <ImageView fx:id="imagen" fitHeight="25.0" fitWidth="34.0" layoutX="21.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="vacio" layoutX="25.0" layoutY="240.0" />
           </children>
         </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #D3D3D3;">
+            <AnchorPane prefHeight="511.0" prefWidth="670.0" style="-fx-background-color: #D3D3D3;">
                <children>
                   <Label fx:id="generoLabel" layoutX="41.0" layoutY="363.0" prefHeight="18.0" prefWidth="186.0" />
                   <Label fx:id="nombreLabel" layoutX="41.0" layoutY="27.0" prefHeight="50.0" prefWidth="519.0" text="NOMBRE">
@@ -102,17 +102,22 @@
                   <Label layoutX="41.0" layoutY="345.0" text="Genero:" />
                   <Label layoutX="40.0" layoutY="144.0" text="Descripción:" />
                   <ImageView fx:id="imagenJuego" fitHeight="150.0" fitWidth="200.0" layoutX="456.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="115.0" layoutY="462.0" text="€">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
       </items>
     </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="900.0" spacing="5.0" VBox.vgrow="NEVER">
+    <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="900.0" spacing="5.0" VBox.vgrow="NEVER">
       <children>
-        <Pane prefHeight="25.0" prefWidth="894.0" HBox.hgrow="ALWAYS">
+        <Pane prefHeight="83.0" prefWidth="894.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button layoutX="2.0" layoutY="7.0" mnemonicParsing="false" onAction="#botonAnadir" text="Añadir" />
-                  <Button layoutX="64.0" layoutY="8.0" mnemonicParsing="false" onAction="#botonEliminar" text="Eliminar" />
-                  <Button layoutX="834.0" layoutY="5.0" mnemonicParsing="false" onAction="#verPerfil" text="Mi Perfil" />
+                  <Button layoutX="6.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonAnadir" styleClass="custom-button" text="Añadir" />
+                  <Button layoutX="114.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonEliminar" styleClass="custom-button" text="Eliminar" />
+                  <Button layoutX="832.0" mnemonicParsing="false" onAction="#verPerfil" styleClass="custom-button" text="👤" />
                </children></Pane>
       </children>
       <padding>

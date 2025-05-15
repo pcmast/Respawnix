@@ -1,0 +1,28 @@
+
+.custom-text-field {
+  -fx-background-color: transparent;
+  -fx-text-fill: black;
+  -fx-prompt-text-fill: rgba(0, 0, 0, 0.5);
+  -fx-border-color: transparent transparent black transparent;
+  -fx-border-width: 0 0 1 0;
+  -fx-padding: 5 0 5 5;
+  -fx-font-size: 14px;
+}
+
+
+
+.custom-button {
+  -fx-background-color: white;
+  -fx-text-fill: #333;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-background-radius: 5;
+  -fx-padding: 8 20;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0, 0, 2);
+}
+.titulo {
+  -fx-font-size: 20px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333333;
+}
