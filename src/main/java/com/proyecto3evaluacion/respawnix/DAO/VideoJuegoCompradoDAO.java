@@ -24,7 +24,9 @@ public class VideoJuegoCompradoDAO {
             while (rs.next()) {
                 VideoJuegoComprado videoJuegoComprado = new VideoJuegoComprado();
                 videoJuegoComprado.setNombreJuego(rs.getString("NombreJuego"));
-                videoJuegoComprado.setEmail("emailUsuario");
+                videoJuegoComprado.setPrecio(rs.getDouble("precioTotal"));
+                videoJuegoComprado.setCantidad(rs.getInt("cantidad"));
+                videoJuegoComprado.setEmail(rs.getString("emailUsuario"));
                 juegos.add(videoJuegoComprado);
             }
         } catch (SQLException e) {

@@ -4,6 +4,7 @@ import com.proyecto3evaluacion.respawnix.baseDatos.ConnectionDB;
 import com.proyecto3evaluacion.respawnix.model.Usuario;
 import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -15,6 +16,33 @@ public class VideoJuegoDAO {
     private final static String SQL_ALL = "select * from videojuego";
     private final static String SQL_INSERT = "INSERT INTO videojuego (nombre, descripcion, genero, plataforma, precio, Imagen) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String SQL_DELETE = "DELETE FROM videojuego WHERE nombre = ? AND descripcion = ? AND genero = ? AND plataforma = ? AND precio = ? AND imagen = ?";
+    private final static String SQL_NAME = "SELECT * FROM videojuego WHERE nombre LIKE ?";
+
+
+    public static List<VideoJuego> juegosPorNombre(String nombre){
+        List<VideoJuego> juegos = new ArrayList<>();
+        Connection con = ConnectionDB.getConnection();
+        try {
+            PreparedStatement stmt = con.prepareStatement(SQL_NAME);
+            stmt.setString(1, "%" + nombre + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                VideoJuego videoJuego = new VideoJuego();
+                videoJuego.setNombre(rs.getString("nombre"));
+                videoJuego.setDescripcion(rs.getString("descripcion"));
+                videoJuego.setGenero(rs.getString("genero"));
+                videoJuego.setPlataforma(rs.getString("plataforma"));
+                videoJuego.setPrecio(rs.getDouble("precio"));
+                videoJuego.setImagen(rs.getString("Imagen"));
+                juegos.add(videoJuego);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return juegos;
+    }
 
 
 

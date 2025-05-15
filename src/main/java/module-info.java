@@ -4,6 +4,7 @@ module com.proyecto3evaluacion.respawnix {
     requires java.desktop;
     requires java.xml.bind;
     requires java.sql;
+    requires jbcrypt;
 
 
     opens com.proyecto3evaluacion.respawnix to javafx.fxml;

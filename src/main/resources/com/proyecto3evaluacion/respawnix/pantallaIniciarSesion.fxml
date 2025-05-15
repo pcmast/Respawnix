@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -14,21 +15,22 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <Pane prefHeight="589.0" prefWidth="858.0" VBox.vgrow="ALWAYS">
+      <Pane prefHeight="493.0" prefWidth="786.0" VBox.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="emailTextField" layoutX="302.0" layoutY="106.0" promptText="Email" />
-            <PasswordField fx:id="passwordField" layoutX="302.0" layoutY="159.0" promptText="Password" />
-            <Button layoutX="352.0" layoutY="214.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Enviar" />
-            <Label layoutX="302.0" layoutY="31.0" text="Inicia sesion">
+            <TextField fx:id="emailTextField" layoutX="302.0" layoutY="230.0" promptText="Email" />
+            <PasswordField fx:id="passwordField" layoutX="302.0" layoutY="293.0" promptText="Password" />
+            <Button layoutX="352.0" layoutY="349.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Enviar" />
+            <Label layoutX="285.0" layoutY="142.0" text="Inicia sesion">
                <font>
                   <Font size="34.0" />
                </font>
             </Label>
-            <Label layoutX="314.0" layoutY="265.0" text="¿No tienes una cuenta?" />
-            <Label layoutX="349.0" layoutY="282.0" onMouseClicked="#Registrarse" text="Registrate" textFill="#0f03fa" />
-            <Label layoutX="302.0" layoutY="89.0" text="Email" />
-            <Label layoutX="300.0" layoutY="142.0" text="Contraseña" />
-            <Label fx:id="emailContraseIncorrecto" layoutX="366.0" layoutY="184.0" textFill="#fa0000" />
+            <Label layoutX="314.0" layoutY="381.0" text="¿No tienes una cuenta?" />
+            <Label layoutX="349.0" layoutY="404.0" onMouseClicked="#Registrarse" text="Registrate" textFill="#0f03fa" />
+            <Label layoutX="300.0" layoutY="200.0" text="Email" />
+            <Label layoutX="298.0" layoutY="265.0" text="Contraseña" />
+            <Label fx:id="emailContraseIncorrecto" layoutX="293.0" layoutY="319.0" textFill="#fa0000" />
+            <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

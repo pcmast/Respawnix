@@ -7,6 +7,7 @@ import com.proyecto3evaluacion.respawnix.baseDatos.ConnectionDB;
 import com.proyecto3evaluacion.respawnix.model.Administrador;
 import com.proyecto3evaluacion.respawnix.model.Cliente;
 import com.proyecto3evaluacion.respawnix.model.Usuario;
+import com.proyecto3evaluacion.respawnix.utils.PasswordUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,15 +16,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Array;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 public class IniciarSesionController {
+    public ImageView logo;
     @FXML
     private Label emailContraseIncorrecto;
     @FXML
@@ -31,6 +36,14 @@ public class IniciarSesionController {
     @FXML
     private PasswordField passwordField;
 
+
+    public void initialize(){
+        File imagenURL = new File("images/LOGOSINFONDO.png");
+        Image image = new Image(imagenURL.toURI().toString());
+        logo.setImage(image);
+
+
+    }
 
     public void iniciarSesion(ActionEvent event) {
         String email = emailTextField.getText();
@@ -41,7 +54,9 @@ public class IniciarSesionController {
         ArrayList<Administrador> administradors = (ArrayList<Administrador>) AdministradorDAO.todosAdministradores();
 
         for (Usuario usuario : list) {
-            if (usuario.getEmail().equals(email) && usuario.getPassword().equals(password)) {
+
+
+            if (usuario.getEmail().equals(email) && PasswordUtils.verificarPassword(password,usuario.getPassword())) {
                 UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
                 usuarioActualController.setUsuario(usuario);
                 existe = true;
@@ -68,6 +83,9 @@ public class IniciarSesionController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = null;
             scene = new Scene(loader.load());
+            File imagenURL = new File("images/MANDOPEQUEÑO.png");
+            Image image = new Image(imagenURL.toURI().toString());
+            stage.getIcons().add(image);
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();
@@ -83,6 +101,9 @@ public class IniciarSesionController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = null;
             scene = new Scene(loader.load());
+            File imagenURL = new File("images/MANDOPEQUEÑO.png");
+            Image image = new Image(imagenURL.toURI().toString());
+            stage.getIcons().add(image);
             stage.setScene(scene);
             stage.show();
             stage.centerOnScreen();
@@ -100,9 +121,12 @@ public class IniciarSesionController {
             Scene scene = null;
             scene = new Scene(loader.load());
             Stage stage = new Stage();
+            File imagenURL = new File("images/MANDOPEQUEÑO.png");
+            Image image = new Image(imagenURL.toURI().toString());
+            stage.getIcons().add(image);
             stage.setTitle("Registrate");
             stage.setScene(scene);
-            stage.showAndWait();
+            stage.show();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

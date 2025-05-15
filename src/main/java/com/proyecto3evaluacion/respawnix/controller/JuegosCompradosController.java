@@ -28,7 +28,14 @@ public class JuegosCompradosController {
     public ObservableList<VideoJuegoComprado> cargarLista() {
         List<VideoJuegoComprado> list = VideoJuegoCompradoDAO.todosLosJuegosComprados();
         ObservableList<VideoJuegoComprado> lista = FXCollections.observableArrayList();
-        lista.addAll(list);
+        for (VideoJuegoComprado videoJuegoComprado : list){
+            if (UsuarioActualController.getInstance().getUsuario().getEmail().equals(videoJuegoComprado.getEmail())){
+                lista.add(videoJuegoComprado);
+            }
+        }
+        if (juegosComprados != null) {
+            juegosComprados.setItems(lista);
+        }
 
         return lista;
     }

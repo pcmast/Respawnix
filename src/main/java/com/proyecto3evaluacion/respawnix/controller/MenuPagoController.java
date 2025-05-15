@@ -6,6 +6,7 @@ import com.proyecto3evaluacion.respawnix.DAO.VideoJuegoDAO;
 import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -35,6 +36,14 @@ public class MenuPagoController {
         }
 
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+    }
+
+    public void mostrarAcercaDe(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Acerca de");
+        alert.setHeaderText("Respawnix");
+        alert.setContentText("Respawnix tienda de videojuegos desarrollada por Pedro Castaño Marín");
+        alert.showAndWait();
     }
 
 }

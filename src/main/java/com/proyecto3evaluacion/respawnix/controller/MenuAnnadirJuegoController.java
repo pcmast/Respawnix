@@ -112,6 +112,10 @@ public class MenuAnnadirJuegoController {
     }
     //Establece el stage de este controlador al de menuJuegosController para luego poder cerrar la ventana una vez añadido el juego
     public void setStage(Stage stage) {
+        File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+        Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+        stage.getIcons().add(imageIcono);
+
         this.stage = stage;
     }
 

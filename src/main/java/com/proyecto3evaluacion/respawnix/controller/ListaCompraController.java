@@ -16,8 +16,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -88,6 +90,10 @@ public class ListaCompraController {
         Scene scene = null;
         Stage stage = new Stage();
         try {
+            File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+            Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+            stage.getIcons().add(imageIcono);
+            
             scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.centerOnScreen();

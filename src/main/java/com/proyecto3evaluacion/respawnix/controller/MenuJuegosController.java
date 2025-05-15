@@ -6,6 +6,7 @@ import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -22,25 +23,42 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuJuegosController {
 
-    public ListView<VideoJuego> mostrarJuegosAnadidos;
-    public Label nombreLabel;
-    public Label precioLabel;
-    public Label plataformaLabel;
-    public Label generoLabel;
-    public Label descripcionLabel;
-    public ImageView imagenJuego;
+    public Label vacio;
+    @FXML
+    private ListView<VideoJuego> mostrarJuegosAnadidos;
+    @FXML
+    private Label nombreLabel;
+    @FXML
+    private Label precioLabel;
+    @FXML
+    private Label plataformaLabel;
+    @FXML
+    private Label generoLabel;
+    @FXML
+    private Label descripcionLabel;
+    @FXML
+    private ImageView imagenJuego;
+    @FXML
+    private TextField buscar;
+    @FXML
+    private ImageView imagen;
     private ObservableList<VideoJuego> videoJuegos = cargarLista();
     private Stage stage;
 
     public void initialize() {
+        File imagenURL = new File("images/lupa.jpg");
+        Image image = new Image(imagenURL.toURI().toString());
+        imagen.setImage(image);
         mostrarJuegosAnadidos.setItems(videoJuegos);
         if (!mostrarJuegosAnadidos.getItems().isEmpty()) {
             mostrarJuegosAnadidos.getSelectionModel().selectFirst();
             barraLateralInfo(mostrarJuegosAnadidos.getSelectionModel().getSelectedItem());
         }
+
     }
 
     public ObservableList<VideoJuego> cargarLista() {
@@ -50,6 +68,18 @@ public class MenuJuegosController {
         return lista;
     }
 
+    public void buscarJuegos(){
+        List<VideoJuego> list = VideoJuegoDAO.juegosPorNombre(buscar.getText());
+        ObservableList<VideoJuego> juegos = FXCollections.observableArrayList();
+        juegos.addAll(list);
+        if (juegos.isEmpty()){
+            vacio.setText("No se encontraron coincidencias");
+        }else {
+            vacio.setText("");
+        }
+        mostrarJuegosAnadidos.setItems(juegos);
+
+    }
 
     /**
      * Metodo que muestra en la barra de la informacion de los juegos todos los datos del juego
@@ -80,10 +110,14 @@ public class MenuJuegosController {
             FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaAnadirJuego.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage = new Stage();
+            File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+            Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+            stage.getIcons().add(imageIcono);
+
             stage.setScene(scene);
             stage.setTitle("Añadir Juego");
 
-            stage.showAndWait();
+            stage.show();
 
             MenuAnnadirJuegoController controller = fxmlLoader.getController();
             controller.setListaVideoJuegos(videoJuegos);
@@ -112,7 +146,7 @@ public class MenuJuegosController {
         alert.setTitle("Acerca de");
         alert.setHeaderText("Respawnix");
         alert.setContentText("Respawnix tienda de videojuegos desarrollada por Pedro Castaño Marín");
-        alert.showAndWait();
+        alert.show();
     }
 
     public void cerrarSesionUsuario(ActionEvent actionEvent) {
@@ -125,7 +159,7 @@ public class MenuJuegosController {
             stage = (Stage) mostrarJuegosAnadidos.getScene().getWindow();
             stage.setScene(scene);
             stage.centerOnScreen();
-            stage.showAndWait();
+            stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -138,6 +172,10 @@ public class MenuJuegosController {
                 Scene scene = null;
                 scene = new Scene(fxmlLoader.load());
                 stage = new Stage();
+                File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+                Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+                stage.getIcons().add(imageIcono);
+
                 stage.setScene(scene);
                 stage.setTitle("respawnix");
                 stage.setOnCloseRequest(event -> stage = null);

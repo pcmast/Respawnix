@@ -4,6 +4,9 @@ public class VideoJuegoComprado {
 
     private String email;
     private String nombreJuego;
+    private double precio;
+    private int cantidad;
+
 
     public VideoJuegoComprado(String email, String nombreJuego) {
         this.email = email;
@@ -27,5 +30,25 @@ public class VideoJuegoComprado {
 
     public void setNombreJuego(String nombreJuego) {
         this.nombreJuego = nombreJuego;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String toString() {
+        return this.nombreJuego + " " + this.precio+ " cantidad "+this.cantidad;
     }
 }

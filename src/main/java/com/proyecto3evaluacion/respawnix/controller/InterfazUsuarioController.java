@@ -21,11 +21,14 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class InterfazUsuarioController {
 
     public Label videoJuegoAnnadido;
     public TextField cantidadAComprar;
+    public TextField buscar;
+    public Label vacio;
 
 
     @FXML
@@ -60,7 +63,24 @@ public class InterfazUsuarioController {
             barraLateralInfo(listaJuegosAComprar.getSelectionModel().getSelectedItem());
         }
 
+
     }
+
+
+    public void buscarJuegos(){
+        List<VideoJuego> list = VideoJuegoDAO.juegosPorNombre(buscar.getText());
+        ObservableList<VideoJuego> juegos = FXCollections.observableArrayList();
+        juegos.addAll(list);
+        if (juegos.isEmpty()){
+            vacio.setText("No se encontraron coincidencias");
+        }else {
+            vacio.setText("");
+        }
+        listaJuegosAComprar.setItems(juegos);
+
+    }
+
+
 
     /**
      * Metodo que muestra en la barra de la informacion de los juegos todos los datos del juego
@@ -100,6 +120,10 @@ public class InterfazUsuarioController {
                 Scene scene = null;
                 scene = new Scene(fxmlLoader.load());
                 stage = new Stage();
+                File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+                Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+                stage.getIcons().add(imageIcono);
+
                 stage.setScene(scene);
                 stage.setTitle("respawnix");
                 stage.setOnCloseRequest(event -> stage = null);
@@ -119,6 +143,9 @@ public class InterfazUsuarioController {
                 Scene scene = null;
                 scene = new Scene(fxmlLoader.load());
                 stage = new Stage();
+                File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+                Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+                stage.getIcons().add(imageIcono);
                 stage.setScene(scene);
                 stage.setTitle("respawnix");
                 stage.setOnCloseRequest(event -> stage = null);
@@ -177,6 +204,10 @@ public class InterfazUsuarioController {
         try {
             scene = new Scene(fxmlLoader.load());
             Stage newStage = new Stage();
+            File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+            Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+            newStage.getIcons().add(imageIcono);
+
             newStage.setScene(scene);
             newStage.centerOnScreen();
             newStage.showAndWait();

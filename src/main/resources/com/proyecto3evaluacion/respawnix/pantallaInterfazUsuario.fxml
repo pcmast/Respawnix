@@ -32,28 +32,17 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.InterfazUsuarioController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.InterfazUsuarioController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Juegos Comprados">
+        <Menu mnemonicParsing="false" text="Biblioteca">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#mostrarJuegosComprados" text="Juegos" />
           </items>
@@ -80,26 +69,27 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="61.0" layoutY="32.0" promptText="Buscar" />
+                  <TextField fx:id="buscar" layoutX="61.0" layoutY="32.0" onKeyPressed="#buscarJuegos" promptText="Buscar" />
                   <ImageView fx:id="imagen" fitHeight="30.0" fitWidth="42.0" layoutX="11.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="vacio" layoutX="24.0" layoutY="254.0" />
                </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
           <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="546.0" prefWidth="670.0">
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="546.0" prefWidth="670.0" style="-fx-background-color: #D3D3D3;">
                      <children>
-                        <Label layoutX="51.0" layoutY="48.0" text="Nombre:" />
-                        <Label fx:id="nombreJuego" layoutX="106.0" layoutY="48.0" />
+                        <Label layoutX="18.0" layoutY="48.0" text="Nombre:" />
+                        <Label fx:id="nombreJuego" layoutX="67.0" layoutY="48.0" />
                         <ImageView fx:id="imagenJuego" fitHeight="222.0" fitWidth="231.0" layoutX="389.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="428.0" layoutY="500.0" text="Precio:" />
                         <Label fx:id="precioJuego" layoutX="473.0" layoutY="500.0" />
                         <Button layoutX="525.0" layoutY="496.0" mnemonicParsing="false" onAction="#annadirALaCesta" text="AÑADIR A LA CESTA" />
                         <Label layoutX="42.0" layoutY="373.0" text="Descripción:" />
                         <Label fx:id="descripcionJuego" alignment="TOP_LEFT" layoutX="122.0" layoutY="365.0" prefHeight="72.0" prefWidth="515.0" wrapText="true" />
-                        <Label layoutX="52.0" layoutY="90.0" text="Genero:" />
-                        <Label fx:id="generoJuego" layoutX="98.0" layoutY="91.0" />
-                        <Label layoutX="51.0" layoutY="120.0" text="Plataforma:" />
-                        <Label fx:id="plataformaJuego" layoutX="122.0" layoutY="121.0" />
+                        <Label layoutX="21.0" layoutY="91.0" text="Genero:" />
+                        <Label fx:id="generoJuego" layoutX="67.0" layoutY="91.0" />
+                        <Label layoutX="21.0" layoutY="121.0" text="Plataforma:" />
+                        <Label fx:id="plataformaJuego" layoutX="83.0" layoutY="121.0" />
                         <Label fx:id="videoJuegoAnnadido" layoutX="529.0" layoutY="449.0" prefHeight="18.0" prefWidth="124.0" textFill="#001aff" />
                         <Label layoutX="525.0" layoutY="472.0" text="Cantidad:" />
                         <TextField fx:id="cantidadAComprar" layoutX="582.0" layoutY="468.0" prefHeight="26.0" prefWidth="60.0" text="1" />

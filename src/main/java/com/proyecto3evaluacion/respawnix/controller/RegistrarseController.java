@@ -7,6 +7,8 @@ import com.proyecto3evaluacion.respawnix.baseDatos.ConnectionProperties;
 import com.proyecto3evaluacion.respawnix.baseDatos.XMLManager;
 import com.proyecto3evaluacion.respawnix.model.ClaveWrapper;
 import com.proyecto3evaluacion.respawnix.model.Usuario;
+import com.proyecto3evaluacion.respawnix.utils.PasswordUtils;
+import com.proyecto3evaluacion.respawnix.utils.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,9 +18,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,6 +33,7 @@ import java.util.Locale;
 public class RegistrarseController {
 
 
+    public ImageView logo;
     @FXML
     private Label claveErronea;
     @FXML
@@ -62,6 +68,15 @@ public class RegistrarseController {
     private TextField claveAdministrador;
 
 
+    public void initialize(){
+        File imagenURL = new File("images/MANDOLETRAS.png");
+        Image image = new Image(imagenURL.toURI().toString());
+        logo.setImage(image);
+
+    }
+
+
+
     public void iniciarSesion(MouseEvent mouseEvent) {
         Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         currentStage.close();
@@ -69,10 +84,14 @@ public class RegistrarseController {
         Stage stage = new Stage();
         Scene scene = null;
         try {
+            File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+            Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+            stage.getIcons().add(imageIcono);
+
             scene = new Scene(fxmlLoader.load());
             stage.setTitle("Iniciar Sesion");
             stage.setScene(scene);
-            stage.showAndWait();
+            stage.show();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -95,10 +114,13 @@ public class RegistrarseController {
 
         if (email.isEmpty()){
             emailVacio.setText("Introduce un email");
+        } else if (!Utilidades.validarCorreo(email)) {
+            emailVacio.setText("Introduce un email valido");
         }else {
             emailVacio.setText("");
             seguir+=1;
         }
+
         if (contrasenna.isEmpty()){
             contrasennaVacia.setText("Introduce la contraseña");
         }else {
@@ -129,10 +151,11 @@ public class RegistrarseController {
         }
         if (clave.equals(claveXML)){
             claveErronea.setText("");
-        }else {
+        }else if (!clave.isEmpty()){
             claveErronea.setText("Las claves no coinciden");
             seguir = 0;
         }
+
 
 
         if (!contrasenna.equals(repetirContrasenna)){
@@ -148,9 +171,12 @@ public class RegistrarseController {
                 crearCuenta = false;
             }
         }
-            UsuarioDAO.insertarUsuarios(nombreUsuario,apellidosUsuario,fecha,email,contrasenna);
-            AdministradorDAO.insertarAdministrador(email);
+            String contrasennaHash = PasswordUtils.hashPassword(contrasenna);
 
+            UsuarioDAO.insertarUsuarios(nombreUsuario,apellidosUsuario,fecha,email,contrasennaHash);
+            if (clave.equals(claveXML)){
+                AdministradorDAO.insertarAdministrador(email);
+            }
 
         if (!crearCuenta){
             correoExistente.setText("Correo ya existe en el sistema");
@@ -164,10 +190,14 @@ public class RegistrarseController {
             Stage stage = new Stage();
             Scene scene = null;
             try {
+                File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+                Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+                stage.getIcons().add(imageIcono);
+
                 scene = new Scene(fxmlLoader.load());
                 stage.setTitle("Iniciar Sesion");
                 stage.setScene(scene);
-                stage.showAndWait();
+                stage.show();
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
