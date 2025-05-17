@@ -14,7 +14,6 @@ public class VideoJuegoCompradoDAO {
     private final static String SQL_INSERT = "INSERT INTO videojuegoscomprados (emailUsuario, NombreJuego, precioJuego, precioTotal, cantidad) VALUES (?, ?, ?, ?, ?)";
 
 
-
     public static List<VideoJuegoComprado> todosLosJuegosComprados() {
         List<VideoJuegoComprado> juegos = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();

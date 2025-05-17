@@ -3,9 +3,7 @@ package com.proyecto3evaluacion.respawnix.controller;
 import com.proyecto3evaluacion.respawnix.DAO.AdministradorDAO;
 import com.proyecto3evaluacion.respawnix.DAO.UsuarioDAO;
 import com.proyecto3evaluacion.respawnix.RespawnixApplication;
-import com.proyecto3evaluacion.respawnix.baseDatos.ConnectionDB;
 import com.proyecto3evaluacion.respawnix.model.Administrador;
-import com.proyecto3evaluacion.respawnix.model.Cliente;
 import com.proyecto3evaluacion.respawnix.model.Usuario;
 import com.proyecto3evaluacion.respawnix.utils.PasswordUtils;
 import javafx.event.ActionEvent;
@@ -23,8 +21,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Array;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 public class IniciarSesionController {
@@ -41,8 +37,6 @@ public class IniciarSesionController {
         File imagenURL = new File("images/LOGOSINFONDO.png");
         Image image = new Image(imagenURL.toURI().toString());
         logo.setImage(image);
-
-
     }
 
     public void iniciarSesion(ActionEvent event) {

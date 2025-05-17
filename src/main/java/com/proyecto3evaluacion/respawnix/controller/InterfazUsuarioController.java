@@ -137,7 +137,6 @@ public class InterfazUsuarioController {
     }
 
     public void verPerfil(ActionEvent actionEvent) {
-        if (stage == null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaPerfilUsuario.fxml"));
                 Scene scene = null;
@@ -153,7 +152,7 @@ public class InterfazUsuarioController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+
 
     }
 
@@ -210,7 +209,27 @@ public class InterfazUsuarioController {
 
             newStage.setScene(scene);
             newStage.centerOnScreen();
-            newStage.showAndWait();
+            newStage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void hazteVIP(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaVIP.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+            Stage newStage = new Stage();
+            File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+            Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+            newStage.getIcons().add(imageIcono);
+
+            newStage.setScene(scene);
+            newStage.centerOnScreen();
+            newStage.show();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

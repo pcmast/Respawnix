@@ -17,9 +17,29 @@ public class VideoJuegoDAO {
     private final static String SQL_INSERT = "INSERT INTO videojuego (nombre, descripcion, genero, plataforma, precio, Imagen) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String SQL_DELETE = "DELETE FROM videojuego WHERE nombre = ? AND descripcion = ? AND genero = ? AND plataforma = ? AND precio = ? AND imagen = ?";
     private final static String SQL_NAME = "SELECT * FROM videojuego WHERE nombre LIKE ?";
+    private final static String SQL_UPDATE = "UPDATE videoJuego SET descripcion = ?, genero = ?, plataforma = ?, precio = ? WHERE nombre = ?";
 
 
-    public static List<VideoJuego> juegosPorNombre(String nombre){
+    public static void juegosActualizar(String descripcion, String genero, String plataforma, double precio, String nombre) {
+        Connection con = ConnectionDB.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(SQL_UPDATE);
+            stmt.setString(1, descripcion);
+            stmt.setString(2, genero);
+            stmt.setString(3, plataforma);
+            stmt.setDouble(4, precio);
+            stmt.setString(5, nombre);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    public static List<VideoJuego> juegosPorNombre(String nombre) {
         List<VideoJuego> juegos = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();
         try {
@@ -45,7 +65,6 @@ public class VideoJuegoDAO {
     }
 
 
-
     public static List<VideoJuego> todosLosJuegos() {
         List<VideoJuego> juegos = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();
@@ -69,7 +88,7 @@ public class VideoJuegoDAO {
         return juegos;
     }
 
-    public static void insertarJuego(String nombre, String descripcion, String genero, String plataforma, Double precio, String imagen){
+    public static void insertarJuego(String nombre, String descripcion, String genero, String plataforma, Double precio, String imagen) {
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -79,7 +98,7 @@ public class VideoJuegoDAO {
             stmt.setString(3, genero);
             stmt.setString(4, plataforma);
             stmt.setDouble(5, precio);
-            stmt.setString(6,imagen);
+            stmt.setString(6, imagen);
             stmt.executeUpdate();
 
 
@@ -89,7 +108,7 @@ public class VideoJuegoDAO {
 
     }
 
-    public static void eliminarJuego(VideoJuego videoJuego){
+    public static void eliminarJuego(VideoJuego videoJuego) {
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -106,8 +125,6 @@ public class VideoJuegoDAO {
         }
 
     }
-
-
 
 
 }

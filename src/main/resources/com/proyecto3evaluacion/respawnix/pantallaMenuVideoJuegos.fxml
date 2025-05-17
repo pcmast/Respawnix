@@ -32,27 +32,17 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.MenuJuegosController">
+<VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.MenuJuegosController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Ayuda">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#mostrarAcercaDe" text="Acerca de" />
           </items>
@@ -81,7 +71,7 @@
         </AnchorPane>
             <AnchorPane prefHeight="511.0" prefWidth="670.0" style="-fx-background-color: #D3D3D3;">
                <children>
-                  <Label fx:id="generoLabel" layoutX="41.0" layoutY="363.0" prefHeight="18.0" prefWidth="186.0" />
+                  <Label fx:id="generoLabel" layoutX="41.0" layoutY="363.0" prefHeight="18.0" prefWidth="335.0" />
                   <Label fx:id="nombreLabel" layoutX="41.0" layoutY="27.0" prefHeight="50.0" prefWidth="519.0" text="NOMBRE">
                      <font>
                         <Font size="34.0" />
@@ -91,7 +81,7 @@
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                  <Label fx:id="plataformaLabel" layoutX="41.0" layoutY="407.0" prefHeight="18.0" prefWidth="281.0" />
+                  <Label fx:id="plataformaLabel" layoutX="41.0" layoutY="407.0" prefHeight="18.0" prefWidth="393.0" />
                   <Label fx:id="descripcionLabel" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" layoutX="43.0" layoutY="172.0" prefHeight="176.0" prefWidth="470.0" wrapText="true" />
                   <Label layoutX="41.0" layoutY="426.0" prefHeight="35.0" prefWidth="158.0" text="Precio:">
                      <font>
@@ -118,6 +108,8 @@
                   <Button layoutX="6.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonAnadir" styleClass="custom-button" text="Añadir" />
                   <Button layoutX="114.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonEliminar" styleClass="custom-button" text="Eliminar" />
                   <Button layoutX="832.0" mnemonicParsing="false" onAction="#verPerfil" styleClass="custom-button" text="👤" />
+                  <Button layoutX="226.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonActualizar" styleClass="custom-button" text="Actualizar" />
+                  <Button layoutX="349.0" mnemonicParsing="false" onAction="#botonActualizarLista" styleClass="custom-button" text="🔁" />
                </children></Pane>
       </children>
       <padding>

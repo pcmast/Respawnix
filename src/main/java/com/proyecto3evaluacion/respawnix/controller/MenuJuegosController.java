@@ -100,7 +100,7 @@ public class MenuJuegosController {
 
     }
 
-    public void mostrarEnLaBarraLateral(MouseEvent mouseEvent) {
+    public void mostrarEnLaBarraLateral() {
         VideoJuego videoJuego = mostrarJuegosAnadidos.getSelectionModel().getSelectedItem();
         barraLateralInfo(videoJuego);
     }
@@ -166,7 +166,6 @@ public class MenuJuegosController {
     }
 
     public void verPerfil(ActionEvent actionEvent) {
-        if (stage == null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaPerfilUsuario.fxml"));
                 Scene scene = null;
@@ -178,12 +177,38 @@ public class MenuJuegosController {
 
                 stage.setScene(scene);
                 stage.setTitle("respawnix");
-                stage.setOnCloseRequest(event -> stage = null);
                 stage.show();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
+
+    }
+
+    public void botonActualizar(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaActualizarJuego.fxml"));
+        try {
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            stage = new Stage();
+            File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+            Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+            stage.getIcons().add(imageIcono);
+            stage.setScene(scene);
+            stage.setTitle("respawnix");
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
+    }
+
+    public void botonActualizarLista(){
+        List<VideoJuego> list = VideoJuegoDAO.juegosPorNombre(buscar.getText());
+        ObservableList<VideoJuego> juegos = FXCollections.observableArrayList();
+        juegos.addAll(list);
+        mostrarJuegosAnadidos.setItems(juegos);
 
     }
 }

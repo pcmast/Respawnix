@@ -1,9 +1,10 @@
 package com.proyecto3evaluacion.respawnix.controller;
 
-import com.proyecto3evaluacion.respawnix.DAO.CestaCompraDAO;
-import com.proyecto3evaluacion.respawnix.DAO.VideoJuegoDAO;
+import com.proyecto3evaluacion.respawnix.DAO.*;
 import com.proyecto3evaluacion.respawnix.RespawnixApplication;
 import com.proyecto3evaluacion.respawnix.model.CestaCompra;
+import com.proyecto3evaluacion.respawnix.model.TarjetaPremium;
+import com.proyecto3evaluacion.respawnix.model.TarjetaVIP;
 import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,10 @@ import java.util.*;
 public class ListaCompraController {
 
 
+    public Label precioPorcentaje;
+    public Label porcentaje;
+
+
     @FXML
     private Label cestaVacia;
     @FXML
@@ -36,7 +41,7 @@ public class ListaCompraController {
     private Label eliminado;
     @FXML
     private ListView<String> listaCompra;
-
+    private double descuento = 0;
 
     public void initialize() {
         mostrarLista();
@@ -60,6 +65,33 @@ public class ListaCompraController {
             }
 
         }
+        boolean comprado = false;
+        double precioPor =0;
+        List<TarjetaPremium> premiums = TarjetaPremiumDAO.todasTarjetas();
+        List<TarjetaVIP> vips = TarjetaVIPDAO.todasTarjetas();
+
+        for (TarjetaPremium tarjetaPremium:premiums){
+            if (tarjetaPremium.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+                precioPor =(precio * 5) / 100;
+                comprado = true;
+
+            }
+        }
+        for (TarjetaVIP vip: vips){
+            if (vip.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+                precioPor =(precio * 10) / 100;
+                comprado = true;
+
+            }
+        }
+
+
+        if (comprado){
+            double descuento = precio - precioPor;
+            precioPorcentaje.setText(String.format("Descuento: %.2f€", descuento));
+            this.descuento = descuento;
+        }
+
         precioCesta.setText(String.format("Precio: %.2f€", precio));
 
 
@@ -165,7 +197,32 @@ public class ListaCompraController {
                 }
             }
             }
+        boolean comprado = false;
+        double precioPor =0;
+        List<TarjetaPremium> premiums = TarjetaPremiumDAO.todasTarjetas();
+        List<TarjetaVIP> vips = TarjetaVIPDAO.todasTarjetas();
 
+        for (TarjetaPremium tarjetaPremium:premiums){
+            if (tarjetaPremium.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+                precioPor =(precio * 5) / 100;
+                comprado = true;
+
+            }
+        }
+        for (TarjetaVIP vip: vips){
+            if (vip.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+                precioPor =(precio * 10) / 100;
+                comprado = true;
+
+            }
+        }
+
+
+        if (comprado){
+            double descuento = precio - precioPor;
+            precioPorcentaje.setText(String.format("Descuento: %.2f€", descuento));
+            this.descuento = descuento;
+        }
 
         precioCesta.setText(String.format("Precio: %.2f€", precio));
 
@@ -180,4 +237,5 @@ public class ListaCompraController {
         alert.setContentText("Respawnix tienda de videojuegos desarrollada por Pedro Castaño Marín");
         alert.showAndWait();
     }
+
 }

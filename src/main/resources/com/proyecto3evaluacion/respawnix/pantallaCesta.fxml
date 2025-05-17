@@ -47,7 +47,7 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Ayuda">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#mostrarAcercaDe" text="Acerca de" />
           </items>
@@ -77,7 +77,17 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="cestaVacia" layoutX="459.0" layoutY="358.0" textFill="RED">
+            <Label fx:id="cestaVacia" layoutX="454.0" layoutY="100.0" textFill="RED">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="precioPorcentaje" layoutX="481.0" layoutY="360.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="porcentaje" layoutX="640.0" layoutY="360.0">
                <font>
                   <Font size="24.0" />
                </font>
