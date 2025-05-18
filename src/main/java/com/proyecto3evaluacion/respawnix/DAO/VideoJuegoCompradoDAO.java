@@ -13,7 +13,10 @@ public class VideoJuegoCompradoDAO {
     private final static String SQL_ALL = "select * from videojuegoscomprados";
     private final static String SQL_INSERT = "INSERT INTO videojuegoscomprados (emailUsuario, NombreJuego, precioJuego, precioTotal, cantidad) VALUES (?, ?, ?, ?, ?)";
 
-
+    /**
+     * Metodo que coge de la base de datos todos los videojuegos comprados
+     * @return devuelve la lista de los videojuegos comprados
+     */
     public static List<VideoJuegoComprado> todosLosJuegosComprados() {
         List<VideoJuegoComprado> juegos = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();
@@ -35,6 +38,14 @@ public class VideoJuegoCompradoDAO {
         return juegos;
     }
 
+    /**
+     * Inserta en la base de datos el videojuego que a sido comprado que usuario lo ha hecho y cuantos a comprado
+     * @param emailUsuario email del usuario que lo a comprado
+     * @param nombreJuego nombre del juego que a comprado
+     * @param precioJuego precio del juego que a comprado
+     * @param precioTotal precio total de los juego por si se a comprado mas de uno
+     * @param cantidad cantidad de juegos que se an comprado
+     */
     public static void insertarJuegoComprado(String emailUsuario, String nombreJuego, double precioJuego, double precioTotal, int cantidad){
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;

@@ -20,11 +20,19 @@ public class JuegosCompradosController {
     @FXML
     private ListView<VideoJuegoComprado> juegosComprados;
 
+    /**
+     * Metodo que al iniciar el controlador añade la lista ya cargada de los juegos que a comprado el usuario actual del
+     * sistema
+     */
     public void initialize(){
         juegosComprados.setItems(list);
 
     }
 
+    /**
+     * Metodo que carga en una lista todos los juegos que un usuario haya comprado todos en la base de datos
+     * @return devuelve un ObservableList para que se pueda mostrar en el ListView
+     */
     public ObservableList<VideoJuegoComprado> cargarLista() {
         List<VideoJuegoComprado> list = VideoJuegoCompradoDAO.todosLosJuegosComprados();
         ObservableList<VideoJuegoComprado> lista = FXCollections.observableArrayList();
@@ -41,6 +49,10 @@ public class JuegosCompradosController {
     }
 
 
+    /**
+     * Metodo que muestra una alerta con informacion del programa (metodo en todas las pantallas)
+     * @param actionEvent el usuario clickea el boton
+     */
     public void mostrarAcercaDe(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de");

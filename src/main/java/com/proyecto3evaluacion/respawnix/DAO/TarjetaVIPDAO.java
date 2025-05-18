@@ -14,7 +14,10 @@ public class TarjetaVIPDAO {
     private final static String SQL_INSERT = "insert into TarjetaVIP values(?,?)";
     private final static String SQL_DELETE = "DELETE FROM tarjetaVIP WHERE email = ?";
 
-
+    /**
+     * Metodo que elimina de la base de datos una tarjeta del usuario que ya a canjeado
+     * @param email email del usuario actual
+     */
     public static void tarjetaUsada(String email){
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
@@ -27,7 +30,10 @@ public class TarjetaVIPDAO {
         }
     }
 
-
+    /**
+     * Metodo que coge todas las tarjetas de la base de datos
+     * @return devuelve todas las tarjetas de la base de datos
+     */
     public static List<TarjetaVIP> todasTarjetas(){
 
         List<TarjetaVIP> tarjetas = new ArrayList<>();
@@ -48,6 +54,10 @@ public class TarjetaVIPDAO {
 
     }
 
+    /**
+     * Metodo que inserta en la base de datos el email del usuario que a comprado una tarjeta y el porcentaje del descuento de la misma
+     * @param email email del usuario actual
+     */
     public static void insertarTarjeta(String email, int porcentaje) {
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;

@@ -29,6 +29,9 @@ public class UsuarioVIPController {
     @FXML
     private Label yacomprado;
 
+    /**
+     * Metodo que al iniciar el controlador añade dos fotos a dos imagenes de la pantalla de interfaz grafica
+     */
     public void initialize(){
         File imagenURL = new File("images/VIP.jpg");
         Image imageVIP = new Image(imagenURL.toURI().toString());
@@ -39,7 +42,12 @@ public class UsuarioVIPController {
 
     }
 
-
+    /**
+     * Si el usuario decide comprar la tarjeta PREMIUM se comprobara que ese usuario no tenga una tarjeta comprada ya
+     * y si no la tiene registra en la base de datos que a comprado la tarjeta PREMIUM si ya tiene una tarjeta el
+     * sistema lo notificara
+     * @param actionEvent cuando el usuario le da click al boton
+     */
     public void comprarPremium(ActionEvent actionEvent) {
         boolean comprado = false;
         int porcentaje = 5;
@@ -66,6 +74,11 @@ public class UsuarioVIPController {
 
     }
 
+    /**
+     * Cuando el usuario decide comprar la tarjeta VIP se comprueba si ese mismo usuario tiene ya una tarjeta comprada si la
+     * tiene notificara que no puede comprar mas y si no tiene ninguna tarjeta registra en la base de datos que a comprado la tarjeta
+     * @param actionEvent cuando el usuario le da a comprar
+     */
     public void compraVIP(ActionEvent actionEvent) {
         boolean comprado = false;
         int porcentaje = 10;
@@ -90,7 +103,10 @@ public class UsuarioVIPController {
         }
 
     }
-
+    /**
+     * Metodo que muestra una alerta con informacion del programa (metodo en todas las pantallas)
+     * @param actionEvent el usuario clickea el boton
+     */
     public void mostrarAcercaDe(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de");

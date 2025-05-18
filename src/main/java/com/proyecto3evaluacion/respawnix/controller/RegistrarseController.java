@@ -67,7 +67,9 @@ public class RegistrarseController {
     @FXML
     private TextField claveAdministrador;
 
-
+    /**
+     * Metodo que al iniciar el controlador añade una foto a una imagen en la pantalla
+     */
     public void initialize(){
         File imagenURL = new File("images/MANDOLETRAS.png");
         Image image = new Image(imagenURL.toURI().toString());
@@ -76,7 +78,10 @@ public class RegistrarseController {
     }
 
 
-
+    /**
+     * Metodo que vuelve atras a la ventana de iniciar sesion
+     * @param mouseEvent cuando el usuario le de a iniciar sesion
+     */
     public void iniciarSesion(MouseEvent mouseEvent) {
         Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         currentStage.close();
@@ -89,7 +94,7 @@ public class RegistrarseController {
             stage.getIcons().add(imageIcono);
 
             scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Iniciar Sesion");
+            stage.setTitle("Respawnix");
             stage.setScene(scene);
             stage.show();
 
@@ -99,6 +104,14 @@ public class RegistrarseController {
 
     }
 
+    /**
+     * cuando el usuario le de a createAccount tendra que haber introducido todos los datos si hay algun dato vacio
+     * el sistema lo informara y no dejara proseguir.
+     * Tambien el usuario puede elejir si ser administrador o usuario normal dependiendo si sabe la clave del administrador
+     * si no la introduce bien el sistema lo notificara.
+     * Si se a creado la cuenta con existo se abrira la ventana de iniciar sesion.
+     * @param actionEvent si el usuario da click en crear cuenta
+     */
     public void createAccount(ActionEvent actionEvent) {
         boolean crearCuenta = true;
         String email = emailAccount.getText();
@@ -195,7 +208,7 @@ public class RegistrarseController {
                 stage.getIcons().add(imageIcono);
 
                 scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Iniciar Sesion");
+                stage.setTitle("Respawnix");
                 stage.setScene(scene);
                 stage.show();
 

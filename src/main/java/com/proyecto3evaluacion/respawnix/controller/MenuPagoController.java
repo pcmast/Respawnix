@@ -19,6 +19,11 @@ public class MenuPagoController {
     private boolean premium = false;
     private boolean bono = false;
 
+    /**
+     * Metodo que coge toda la cesta de la compra del usuario actual y calcula el precio del descuento si se a querido aplicar
+     * y añade cuando se compre los juegos comprados a la base de datos
+     * @param actionEvent cuando el usuario le de a comprar
+     */
     public void comprar(ActionEvent actionEvent) {
         Map<String, Integer> list = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
         List<VideoJuego> juegos = VideoJuegoDAO.todosLosJuegos();
@@ -94,6 +99,10 @@ public class MenuPagoController {
         }
     }
 
+    /**
+     * Metodo que muestra una alerta con informacion del programa (metodo en todas las pantallas)
+     * @param actionEvent el usuario clickea el boton
+     */
     public void mostrarAcercaDe(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de");
@@ -102,7 +111,10 @@ public class MenuPagoController {
         alert.showAndWait();
     }
 
-
+    /**
+     * Si el usuario decide usar el bono pone a true el booleano dependiendo de que tarjeta compro o VIP o PREMIUM
+     * @param actionEvent
+     */
     public void usarBONO(ActionEvent actionEvent) {
         bono = true;
         List<TarjetaPremium> premiums = TarjetaPremiumDAO.todasTarjetas();

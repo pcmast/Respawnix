@@ -20,6 +20,14 @@ public class VideoJuegoDAO {
     private final static String SQL_UPDATE = "UPDATE videoJuego SET descripcion = ?, genero = ?, plataforma = ?, precio = ? WHERE nombre = ?";
 
 
+    /**
+     * Metodo que actualiza en la base de datos un videojuego con los nuevos datos
+     * @param descripcion descripcion nueva del juego
+     * @param genero genero actualizado del juego
+     * @param plataforma plataforma del juego actualizada
+     * @param precio precio del juego actualizado
+     * @param nombre nombre del juego actualizado
+     */
     public static void juegosActualizar(String descripcion, String genero, String plataforma, double precio, String nombre) {
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
@@ -39,6 +47,11 @@ public class VideoJuegoDAO {
 
     }
 
+    /**
+     * Metodo que coge todos los juegos dependiendo del nombre que se le introduzca
+     * @param nombre nombre del juego
+     * @return devuelve la lista de los videojuegos con ese nombre o similar
+     */
     public static List<VideoJuego> juegosPorNombre(String nombre) {
         List<VideoJuego> juegos = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();
@@ -64,7 +77,10 @@ public class VideoJuegoDAO {
         return juegos;
     }
 
-
+    /**
+     * Metodo que coge de la base de datos todos los videojuegos
+     * @return devuelve la lista de todos los juegos
+     */
     public static List<VideoJuego> todosLosJuegos() {
         List<VideoJuego> juegos = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();
@@ -88,6 +104,16 @@ public class VideoJuegoDAO {
         return juegos;
     }
 
+
+    /**
+     * Metodo que inserta un videojuego en la base de datos
+     * @param nombre nombre del juego a introducir
+     * @param descripcion descripcion del juego a introducir
+     * @param genero genero del juego a introducir
+     * @param plataforma plataforma del juego a introducir
+     * @param precio precio del juego a introducir
+     * @param imagen ruta de la imagen a introducir
+     */
     public static void insertarJuego(String nombre, String descripcion, String genero, String plataforma, Double precio, String imagen) {
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
@@ -108,6 +134,10 @@ public class VideoJuegoDAO {
 
     }
 
+    /**
+     * Metodo que eliminar de la base de datos un videojuego pasando todos los datos del mismo un objeto entero
+     * @param videoJuego el objeto videojuego que se va a eliminar
+     */
     public static void eliminarJuego(VideoJuego videoJuego) {
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;

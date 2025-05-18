@@ -49,6 +49,10 @@ public class MenuJuegosController {
     private ObservableList<VideoJuego> videoJuegos = cargarLista();
     private Stage stage;
 
+    /**
+     * Metodo que al iniciar el controllador se ejecuta añadiendo una imagen al lado del buscador
+     * y carga la lista de los juegos y si no esta vacia la lista carga el primer juego
+     */
     public void initialize() {
         File imagenURL = new File("images/lupa.jpg");
         Image image = new Image(imagenURL.toURI().toString());
@@ -61,6 +65,10 @@ public class MenuJuegosController {
 
     }
 
+    /**
+     * Metodo que coge de la base de datos todos los videojuegos y carga la lista
+     * @return devuelve la lista
+     */
     public ObservableList<VideoJuego> cargarLista() {
         ArrayList<VideoJuego> list = (ArrayList<VideoJuego>) VideoJuegoDAO.todosLosJuegos();
         ObservableList<VideoJuego> lista = FXCollections.observableArrayList();
@@ -68,6 +76,10 @@ public class MenuJuegosController {
         return lista;
     }
 
+    /**
+     * Metodo que busca por todos los videojuegos de la base de datos por su nombre introducido por el usuario si no se encuentra
+     * muestra un mensaje de no se encontraron coincidencias
+     */
     public void buscarJuegos(){
         List<VideoJuego> list = VideoJuegoDAO.juegosPorNombre(buscar.getText());
         ObservableList<VideoJuego> juegos = FXCollections.observableArrayList();
@@ -100,11 +112,19 @@ public class MenuJuegosController {
 
     }
 
+    /**
+     * Metodo que muestra en la barra el juego seleccionado por el usuario
+     */
     public void mostrarEnLaBarraLateral() {
         VideoJuego videoJuego = mostrarJuegosAnadidos.getSelectionModel().getSelectedItem();
         barraLateralInfo(videoJuego);
     }
 
+    /**
+     * Metodo que abre una ventana para poner la informacion de un nuevo juego y luego añade la lista del controlador
+     * de menuAnnadirJuegoController
+     * @param actionEvent Cuando el usuario hace click
+     */
     public void botonAnadir(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaAnadirJuego.fxml"));
@@ -115,7 +135,7 @@ public class MenuJuegosController {
             stage.getIcons().add(imageIcono);
 
             stage.setScene(scene);
-            stage.setTitle("Añadir Juego");
+            stage.setTitle("Respawnix");
 
             stage.show();
 
@@ -128,6 +148,11 @@ public class MenuJuegosController {
         }
     }
 
+    /**
+     * Metodo que cuando el usuario le de a eliminar coge el juego seleccionado y si es distinto a null lo elimina
+     * de la base de datos
+     * @param actionEvent cuando el usuario le da click al boton
+     */
     public void botonEliminar(ActionEvent actionEvent) {
         VideoJuego videoJuegoSeleccionado = mostrarJuegosAnadidos.getSelectionModel().getSelectedItem();
         if (videoJuegoSeleccionado != null) {
@@ -140,7 +165,10 @@ public class MenuJuegosController {
     }
 
 
-
+    /**
+     * Metodo que muestra una alerta con informacion del programa (metodo en todas las pantallas)
+     * @param actionEvent el usuario clickea el boton
+     */
     public void mostrarAcercaDe(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de");
@@ -149,6 +177,11 @@ public class MenuJuegosController {
         alert.show();
     }
 
+    /**
+     * metodo que cierra la sesion poniendo el usuario actual a null y abriendo de nuevo la ventana de iniciar sesion para
+     * cambiar el usuario
+     * @param actionEvent cuando el usuario le da click a cerrar sesion
+     */
     public void cerrarSesionUsuario(ActionEvent actionEvent) {
         UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
         usuarioActualController.setUsuario(null);
@@ -165,6 +198,10 @@ public class MenuJuegosController {
         }
     }
 
+    /**
+     * Metodo que muestra la ventana del perfil del usuario actual en este caso siempre sera administrador
+     * @param actionEvent cuando el usuario le da click al boton
+     */
     public void verPerfil(ActionEvent actionEvent) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaPerfilUsuario.fxml"));
@@ -185,6 +222,10 @@ public class MenuJuegosController {
 
     }
 
+    /**
+     * Metodo que cuando se le da click abre una ventana nueva para actualizar un jeugo de la base de datos
+     * @param actionEvent cuando el usuario le da click al boton
+     */
     public void botonActualizar(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaActualizarJuego.fxml"));
         try {
@@ -204,6 +245,9 @@ public class MenuJuegosController {
 
     }
 
+    /**
+     * Cuando se actualiza la un juego hay un boton para actualizar la lista y que salga actualizado
+     */
     public void botonActualizarLista(){
         List<VideoJuego> list = VideoJuegoDAO.juegosPorNombre(buscar.getText());
         ObservableList<VideoJuego> juegos = FXCollections.observableArrayList();

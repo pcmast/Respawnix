@@ -1,9 +1,11 @@
 package com.proyecto3evaluacion.respawnix.model;
 
+import com.proyecto3evaluacion.respawnix.Interfaces.CestaCompraInterfaz;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CestaCompra {
+public class CestaCompra implements CestaCompraInterfaz<String> {
 
 
     private static CestaCompra instancia;
@@ -38,10 +40,11 @@ public class CestaCompra {
         CestaCompra.videoJuego = videoJuego;
     }
 
-    public static void annadir(String videoJuegoName) {
+    public void annadir(String videoJuegoName) {
         videoJuego.add(videoJuegoName);
     }
-    public static void eliminar(String videoJuegoName){
+
+    public void eliminar(String videoJuegoName){
             videoJuego.remove(videoJuegoName);
 
     }

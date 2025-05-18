@@ -47,7 +47,10 @@ public class MenuAnnadirJuegoController {
     private Stage stage;
     private VideoJuego videoJuego;
 
-
+    /**
+     * Metodo que selecciona una imagen del equipo para asignarsela a un videojuego
+     * @param actionEvent cuando el usuario le da click al boton
+     */
     public void botonSubirImagen(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar imagen del juego");
@@ -80,6 +83,11 @@ public class MenuAnnadirJuegoController {
 
         }
     }
+
+    /**
+     * Metodo que añade un videojuego a la base de datos con la informacion introducida por el usuario administrador
+     * @return devuelve el videojuego añadido
+     */
     public VideoJuego anadirJuego() {
         videoJuego = new VideoJuego();
         String nombre = nombreJuego.getText();
@@ -104,6 +112,10 @@ public class MenuAnnadirJuegoController {
         return videoJuego;
     }
 
+    /**
+     * Metodo que si la lista no esta vacia asigna la lista de esta clase la lista recibida como parametro
+     * @param lista la lista recibida de otra clase
+     */
     public void setListaVideoJuegos(ObservableList<VideoJuego> lista) {
         if (list != null) {
             this.list = lista;
@@ -120,6 +132,10 @@ public class MenuAnnadirJuegoController {
         this.stage = stage;
     }
 
+    /**
+     * Metodo que coge el videojuego introducido por el administrador y lo añade a la lista y luego cierra la ventana
+     * @param actionEvent
+     */
     public void anadirJuegoSalir (ActionEvent actionEvent){
         videoJuego = anadirJuego();
         list.add(videoJuego);
@@ -130,10 +146,18 @@ public class MenuAnnadirJuegoController {
 
     }
 
+    /**
+     * Boton para cancelar operacion de añadir un juego
+     * @param actionEvent cuando el usuario clickea el boton
+     */
     public void cancelarAnnadir(ActionEvent actionEvent) {
         stage.close();
     }
 
+    /**
+     * Metodo que muestra una alerta con informacion del programa (metodo en todas las pantallas)
+     * @param actionEvent el usuario clickea el boton
+     */
     public void mostrarAcercaDe(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de");

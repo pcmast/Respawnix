@@ -32,6 +32,12 @@ public class ActualizarJuegoController {
     private TextField campoPrecio;
 
 
+    /**
+     * Metodo que actualiza un objeto de la base de datos y tambien lo actualiza en la cesta de la compra si no se introduce
+     * ningun dato aparte del nombre antiguo se dejan los datos tal cual estan
+     * @param actionEvent recibe como parametro el click que ha dado el usuario para luego conseguir la ventana
+     * anterior y cerrarla
+     */
     public void actualizarObjeto(ActionEvent actionEvent) {
         boolean nombreVacio = false;
         VideoJuego videoJuegoAntiguo = new VideoJuego();

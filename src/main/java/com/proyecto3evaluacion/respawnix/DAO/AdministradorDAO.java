@@ -13,6 +13,10 @@ public class AdministradorDAO {
     private final static String SQL_ALL = "select * from administrador";
     private final static String SQL_ANNADIR = "INSERT INTO administrador (emailUsuario) VALUES (?)";
 
+    /**
+     * Metodo que coge de la base de datos todos los emails de los administradores
+     * @return devuelve la lista de los administradores
+     */
     public static List<Administrador> todosAdministradores(){
         List<Administrador> list = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();
@@ -31,6 +35,11 @@ public class AdministradorDAO {
 
         return list;
     }
+
+    /**
+     * Inserta en la base de datos el email de un administrador
+     * @param email el email a añadir
+     */
     public static void insertarAdministrador(String email){
         Connection con = ConnectionDB.getConnection();
         try {

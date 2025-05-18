@@ -15,7 +15,10 @@ public class TarjetaDAO {
     private final static String SQL_INSERT = "insert into Tarjeta (nombre,email) values(?,?)";
     private final static String SQL_DELETE = "DELETE FROM tarjeta WHERE email = ?";
 
-
+    /**
+     * Metodo que elimina de la base de datos una tarjeta del usuario que ya a canjeado
+     * @param email email del usuario actual
+     */
     public static void tarjetaUsada(String email){
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
@@ -28,7 +31,10 @@ public class TarjetaDAO {
         }
     }
 
-
+    /**
+     * Metodo que coge todas las tarjetas de la base de datos
+     * @return devuelve todas las tarjetas de la base de datos
+     */
     public static List<Tarjeta> todas(){
             List<Tarjeta> tarjetas = new ArrayList<>();
             Connection con = ConnectionDB.getConnection();
@@ -48,6 +54,12 @@ public class TarjetaDAO {
             return tarjetas;
 
     }
+
+    /**
+     * Metodo que inserta en la base de datos el email del usuario actual y el tipo de tarjeta que es (PREMIUM o VIP)
+     * @param nombre tipo de tarjeta (PREMIUM o VIP)
+     * @param email email del usuario actual
+     */
     public static void insertarTarjeta(String nombre, String email) {
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;

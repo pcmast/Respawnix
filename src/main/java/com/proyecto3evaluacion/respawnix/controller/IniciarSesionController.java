@@ -32,13 +32,21 @@ public class IniciarSesionController {
     @FXML
     private PasswordField passwordField;
 
-
+    /**
+     * Metodo que al inciar la clase coge una imagen de la carpeta images del programa y la pone en la pantalla
+     */
     public void initialize(){
         File imagenURL = new File("images/LOGOSINFONDO.png");
         Image image = new Image(imagenURL.toURI().toString());
         logo.setImage(image);
     }
 
+    /**
+     * Metodo que busca en la base de datos el usuario introducido y si existe en la base de datos llama dependiendo
+     * de que usuario seas usuario normal o administrador al metodo que inicia sesion como esos dos usuarios
+     * @param event Recibe como parametro el evento hecho en la interfaz grafica que luego se le pasara a los metodos de
+     * iniciar sesion como administrador o como usuario normal
+     */
     public void iniciarSesion(ActionEvent event) {
         String email = emailTextField.getText();
         String password = passwordField.getText();
@@ -71,6 +79,11 @@ public class IniciarSesionController {
 
     }
 
+    /**
+     * Metodo que carga la pantalla de la interfaz del usuario normal con los datos ya confirmados antes.
+     * se coge el stage del evento anterior
+     * @param event
+     */
     private void iniciarSesionDeCliente(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaInterfazUsuario.fxml"));
@@ -89,6 +102,11 @@ public class IniciarSesionController {
 
     }
 
+    /**
+     * Metodo que carga la pantalla de un usuario administrador con los datos ya confirmados antes
+     * coge el stage del evento anterior
+     * @param event
+     */
     private void iniciarSesionExitosoAdministrador(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaMenuVideoJuegos.fxml"));
@@ -106,7 +124,10 @@ public class IniciarSesionController {
         }
     }
 
-
+    /**
+     * Metodo que carga otra ventana para introducir los datos del usuario si no tienes una cuenta
+     * @param mouseEvent si el usuario a hecho click en registrarse
+     */
     public void Registrarse(MouseEvent mouseEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaRegistrarse.fxml"));
@@ -118,7 +139,7 @@ public class IniciarSesionController {
             File imagenURL = new File("images/MANDOPEQUEÑO.png");
             Image image = new Image(imagenURL.toURI().toString());
             stage.getIcons().add(image);
-            stage.setTitle("Registrate");
+            stage.setTitle("Respawnix");
             stage.setScene(scene);
             stage.show();
 

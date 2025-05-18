@@ -13,6 +13,11 @@ public class UsuarioDAO {
     private final static String SQL_ALL = "select * from usuario";
     private final static String SQL_ANNADIR = "INSERT INTO usuario (Nombre, apellidos, fechaNacimiento, email, password) VALUES (?, ?, ?, ?, ?)";;
 
+
+    /**
+     * Metodo que coge de la base de datos todos los usuarios
+     * @return devuelve la lista de los usuarios
+     */
     public static List<Usuario> todosUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
         Connection con = ConnectionDB.getConnection();
@@ -35,6 +40,14 @@ public class UsuarioDAO {
         return usuarios;
     }
 
+    /**
+     * Metodo que inserta un usuario en la base de datos mediante su informacion
+     * @param nombre nombre del usuario introducido
+     * @param apellidos apellidos del usuario introducido
+     * @param fechaNacimiento fecha de nacimiento del usuario introducida
+     * @param email email del usuario introducido
+     * @param password la contraseña del usuario introducida
+     */
     public static void insertarUsuarios(String nombre, String apellidos, LocalDate fechaNacimiento, String email, String password){
         Connection con = ConnectionDB.getConnection();
         PreparedStatement stmt = null;
