@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InterfazUsuarioController {
 
@@ -76,19 +77,16 @@ public class InterfazUsuarioController {
      * si no lo hace muestra en la lista un mensaje no se encontraron coincidencias y si si lo hace añade a la lista los juegos
      * que tengan un nombre parecido
      */
-    public void buscarJuegos(){
-        List<VideoJuego> list = VideoJuegoDAO.juegosPorNombre(buscar.getText());
-        ObservableList<VideoJuego> juegos = FXCollections.observableArrayList();
-        juegos.addAll(list);
-        if (juegos.isEmpty()){
-            vacio.setText("No se encontraron coincidencias");
-        }else {
-            vacio.setText("");
-        }
+    public void buscarJuegos() {
+        List<VideoJuego> juegosFiltrados = VideoJuegoDAO.juegosPorNombre(buscar.getText()).stream()
+                .filter(juego -> juego != null)
+                .collect(Collectors.toList());
+
+        ObservableList<VideoJuego> juegos = FXCollections.observableArrayList(juegosFiltrados);
+
+        vacio.setText(juegos.isEmpty() ? "No se encontraron coincidencias" : "");
         listaJuegosAComprar.setItems(juegos);
-
     }
-
 
 
     /**
@@ -112,6 +110,7 @@ public class InterfazUsuarioController {
 
     /**
      * Metodo que dependiendo del juego seleccionado por el usuario muestra la informacion de ese mismo juego en la barra lateral
+     *
      * @param mouseEvent si el usuario da click al videojuego
      */
     public void mostrarEnLaBarra(MouseEvent mouseEvent) {
@@ -122,6 +121,7 @@ public class InterfazUsuarioController {
     /**
      * Metodo que carga la lista de todos los videojuegos y los añade a una observableList para que el listView
      * la pueda mostrar bien
+     *
      * @return devuelve la observableList con los juegos
      */
     public ObservableList<VideoJuego> cargarLista() {
@@ -133,6 +133,7 @@ public class InterfazUsuarioController {
 
     /**
      * Metodo que abre la ventada de la cesta de la compra
+     *
      * @param actionEvent cuando el usuario le da click a comprar
      */
     public void comprar(ActionEvent actionEvent) {
@@ -161,24 +162,25 @@ public class InterfazUsuarioController {
 
     /**
      * Metodo que abre la ventana del perfil del usuario mostrando los datos del usuario
+     *
      * @param actionEvent
      */
     public void verPerfil(ActionEvent actionEvent) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaPerfilUsuario.fxml"));
-                Scene scene = null;
-                scene = new Scene(fxmlLoader.load());
-                stage = new Stage();
-                File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
-                Image imageIcono = new Image(imagenURLIcono.toURI().toString());
-                stage.getIcons().add(imageIcono);
-                stage.setScene(scene);
-                stage.setTitle("respawnix");
-                stage.setOnCloseRequest(event -> stage = null); //dejo la variable stage en null para que luego se pueda abrir de nuevo la ventana
-                stage.showAndWait();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaPerfilUsuario.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            stage = new Stage();
+            File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
+            Image imageIcono = new Image(imagenURLIcono.toURI().toString());
+            stage.getIcons().add(imageIcono);
+            stage.setScene(scene);
+            stage.setTitle("respawnix");
+            stage.setOnCloseRequest(event -> stage = null); //dejo la variable stage en null para que luego se pueda abrir de nuevo la ventana
+            stage.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
@@ -186,19 +188,20 @@ public class InterfazUsuarioController {
     /**
      * Metodo que valida si lo introducido es un numero si lo es coge el juego seleccionado y lo añade a la cesta de la compra
      * actualizando la base de datos con el juego y el email del usuario
+     *
      * @param actionEvent
      */
     public void annadirALaCesta(ActionEvent actionEvent) {
-        if (Utilidades.validarNumero(cantidadAComprar.getText())){
-        VideoJuego seleccionado = listaJuegosAComprar.getSelectionModel().getSelectedItem();
-        UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
-        CestaCompra cestaCompra = CestaCompra.getInstance();
-        CestaCompra.setEmailUsuario(usuarioActualController.getUsuario().getEmail());
-        cestaCompra.annadir(seleccionado.getNombre());
+        if (Utilidades.validarNumero(cantidadAComprar.getText())) {
+            VideoJuego seleccionado = listaJuegosAComprar.getSelectionModel().getSelectedItem();
+            UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
+            CestaCompra cestaCompra = CestaCompra.getInstance();
+            CestaCompra.setEmailUsuario(usuarioActualController.getUsuario().getEmail());
+            cestaCompra.annadir(seleccionado.getNombre());
 
-        CestaCompraDAO.actualizarEnLaLista(usuarioActualController.getUsuario().getEmail(), seleccionado.getNombre(), Integer.parseInt(cantidadAComprar.getText()));
-        videoJuegoAnnadido.setText("Añadido a la cesta");
-        }else {
+            CestaCompraDAO.actualizarEnLaLista(usuarioActualController.getUsuario().getEmail(), seleccionado.getNombre(), Integer.parseInt(cantidadAComprar.getText()));
+            videoJuegoAnnadido.setText("Añadido a la cesta");
+        } else {
             videoJuegoAnnadido.setText("Cantidad no válida");
         }
     }
@@ -206,6 +209,7 @@ public class InterfazUsuarioController {
 
     /**
      * Metodo que muestra una alerta con informacion del programa (metodo en todas las pantallas)
+     *
      * @param actionEvent el usuario clickea el boton
      */
     public void mostrarAcercaDe(ActionEvent actionEvent) {
@@ -219,6 +223,7 @@ public class InterfazUsuarioController {
     /**
      * Metodo que cierra sesion del usuario actual del sistema y te devuelve a la ventana de iniciar sesion para cambiar de
      * usuario
+     *
      * @param actionEvent
      */
     public void cerrarSesionUsuario(ActionEvent actionEvent) {
@@ -239,6 +244,7 @@ public class InterfazUsuarioController {
 
     /**
      * Metodo que abre una ventana de los videojuegos comprados del usuario
+     *
      * @param actionEvent cuando el usuario hace click al boton
      */
     public void mostrarJuegosComprados(ActionEvent actionEvent) {
@@ -262,6 +268,7 @@ public class InterfazUsuarioController {
 
     /**
      * Metodo que abre una ventada de comprar una tarjeta y el usuario volverse VIP
+     *
      * @param actionEvent cuando el usuario hace click al boton
      */
     public void hazteVIP(ActionEvent actionEvent) {
