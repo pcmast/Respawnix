@@ -54,7 +54,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="442.0" prefWidth="684.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="442.0" prefWidth="684.0" VBox.vgrow="NEVER">
          <children>
             <Button layoutX="78.0" layoutY="357.0" mnemonicParsing="false" onAction="#comprar" prefHeight="40.0" prefWidth="126.0" styleClass="custom-button" text="Comprar" />
             <Button layoutX="509.0" layoutY="224.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="102.0" styleClass="custom-button" text="Eliminar" />

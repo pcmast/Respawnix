@@ -39,19 +39,17 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="618.0" prefWidth="900.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.InterfazUsuarioController">
   <children>
-    <MenuBar VBox.vgrow="ALWAYS">
+    <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Biblioteca">
           <items>
@@ -70,11 +68,11 @@
             </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.23864648263579694" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane>
+        <AnchorPane prefHeight="542.0" prefWidth="352.0">
                <children>
-                  <ListView fx:id="listaJuegosAComprar" layoutX="11.0" layoutY="63.0" onMouseClicked="#mostrarEnLaBarra" prefHeight="476.0" prefWidth="200.0" />
+                  <ListView fx:id="listaJuegosAComprar" layoutX="8.0" layoutY="61.0" onMouseClicked="#mostrarEnLaBarra" prefHeight="476.0" prefWidth="200.0" />
                   <Label layoutX="40.0" layoutY="2.0" styleClass="titulo" text="VIDEOJUEGOS">
                      <font>
                         <Font size="22.0" />
@@ -85,40 +83,41 @@
                   <Label fx:id="vacio" layoutX="24.0" layoutY="254.0" />
                </children>
         </AnchorPane>
-        <ScrollPane prefHeight="505.0" prefWidth="670.0" SplitPane.resizableWithParent="false">
-          <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="546.0" prefWidth="670.0" style="-fx-background-color: #D3D3D3;">
-                     <children>
-                        <Label layoutX="18.0" layoutY="48.0" text="Nombre:" />
-                        <Label fx:id="nombreJuego" layoutX="67.0" layoutY="48.0" />
-                        <ImageView fx:id="imagenJuego" fitHeight="222.0" fitWidth="231.0" layoutX="410.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" styleClass="imagen-juego" />
-                        <Label layoutX="362.0" layoutY="500.0" text="Precio:" />
-                        <Label fx:id="precioJuego" layoutX="404.0" layoutY="500.0" />
-                        <Button layoutX="476.0" layoutY="486.0" mnemonicParsing="false" onAction="#annadirALaCesta" styleClass="custom-button" text="AÑADIR A LA CESTA" />
-                        <Label layoutX="42.0" layoutY="373.0" text="Descripción:" />
-                        <Label fx:id="descripcionJuego" alignment="TOP_LEFT" layoutX="122.0" layoutY="365.0" prefHeight="72.0" prefWidth="515.0" wrapText="true" />
-                        <Label layoutX="21.0" layoutY="91.0" text="Genero:" />
-                        <Label fx:id="generoJuego" layoutX="67.0" layoutY="91.0" />
-                        <Label layoutX="21.0" layoutY="121.0" text="Plataforma:" />
-                        <Label fx:id="plataformaJuego" layoutX="83.0" layoutY="121.0" />
-                        <Label fx:id="videoJuegoAnnadido" layoutX="529.0" layoutY="438.0" prefHeight="18.0" prefWidth="124.0" textFill="#001aff" />
-                        <Label layoutX="525.0" layoutY="460.0" text="Cantidad:" />
-                        <TextField fx:id="cantidadAComprar" layoutX="582.0" layoutY="456.0" prefHeight="26.0" prefWidth="60.0" text="1" />
-                        <Label layoutX="435.0" layoutY="500.0" text="€" />
-                     </children>
-            </AnchorPane>
-          </content>
-        </ScrollPane>
+      <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="546.0" prefWidth="670.0" style="-fx-background-color: #D3D3D3;">
+               <children>
+                  <Label layoutX="18.0" layoutY="48.0" text="Nombre:" />
+                  <Label fx:id="nombreJuego" layoutX="67.0" layoutY="48.0" />
+                  <ImageView fx:id="imagenJuego" fitHeight="222.0" fitWidth="231.0" layoutX="410.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" styleClass="imagen-juego" />
+                  <Label layoutX="362.0" layoutY="500.0" text="Precio:" />
+                  <Label fx:id="precioJuego" layoutX="404.0" layoutY="500.0" />
+                  <Button layoutX="476.0" layoutY="486.0" mnemonicParsing="false" onAction="#annadirALaCesta" styleClass="custom-button" text="AÑADIR A LA CESTA" />
+                  <Label layoutX="42.0" layoutY="373.0" text="Descripción:" />
+                  <Label fx:id="descripcionJuego" alignment="TOP_LEFT" layoutX="122.0" layoutY="365.0" prefHeight="72.0" prefWidth="515.0" wrapText="true" />
+                  <Label layoutX="21.0" layoutY="91.0" text="Genero:" />
+                  <Label fx:id="generoJuego" layoutX="67.0" layoutY="91.0" />
+                  <Label layoutX="21.0" layoutY="121.0" text="Plataforma:" />
+                  <Label fx:id="plataformaJuego" layoutX="83.0" layoutY="121.0" />
+                  <Label fx:id="videoJuegoAnnadido" layoutX="529.0" layoutY="438.0" prefHeight="18.0" prefWidth="124.0" textFill="#001aff" />
+                  <Label layoutX="525.0" layoutY="460.0" text="Cantidad:" />
+                  <TextField fx:id="cantidadAComprar" layoutX="582.0" layoutY="456.0" prefHeight="26.0" prefWidth="60.0" text="1" />
+                  <Label layoutX="435.0" layoutY="500.0" text="€" />
+               </children>
+      </AnchorPane>
       </items>
     </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
+    <HBox id="HBox" alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="50.0" prefWidth="900.0" spacing="5.0" VBox.vgrow="NEVER">
       <children>
-        <Pane HBox.hgrow="ALWAYS">
+            <Button mnemonicParsing="false" onAction="#comprar" prefHeight="18.0" prefWidth="163.0" styleClass="custom-button" text="Lista de Compra" HBox.hgrow="NEVER">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#hazteVIP" prefHeight="18.0" prefWidth="163.0" styleClass="custom-button" text="💎 Hazte VIP 💎" HBox.hgrow="NEVER" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="552.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button layoutX="1.0" layoutY="4.0" mnemonicParsing="false" onAction="#comprar" prefHeight="18.0" prefWidth="163.0" styleClass="custom-button" text="Lista de Compra" />
-                  <Button layoutX="833.0" layoutY="5.0" mnemonicParsing="false" onAction="#verPerfil" prefHeight="36.0" prefWidth="54.0" styleClass="custom-button" text="👤" />
-                  <Button layoutX="203.0" layoutY="4.0" mnemonicParsing="false" onAction="#hazteVIP" prefHeight="18.0" prefWidth="163.0" styleClass="custom-button" text="💎 Hazte VIP 💎" />
-               </children></Pane>
+                  <Button mnemonicParsing="false" onAction="#verPerfil" prefHeight="36.0" prefWidth="54.0" styleClass="custom-button" text="👤" />
+               </children>
+            </HBox>
       </children>
       <padding>
         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />

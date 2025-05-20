@@ -32,13 +32,22 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.MenuJuegosController">
+<VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto3evaluacion.respawnix.controller.MenuJuegosController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -82,7 +91,7 @@
                         <Font size="18.0" />
                      </font></Label>
                   <Label fx:id="plataformaLabel" layoutX="41.0" layoutY="407.0" prefHeight="18.0" prefWidth="393.0" />
-                  <Label fx:id="descripcionLabel" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" layoutX="43.0" layoutY="172.0" prefHeight="176.0" prefWidth="470.0" wrapText="true" />
+                  <Label fx:id="descripcionLabel" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" layoutX="40.0" layoutY="172.0" prefHeight="176.0" prefWidth="470.0" wrapText="true" />
                   <Label layoutX="41.0" layoutY="426.0" prefHeight="35.0" prefWidth="158.0" text="Precio:">
                      <font>
                         <Font size="24.0" />
@@ -101,16 +110,17 @@
             </AnchorPane>
       </items>
     </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="900.0" spacing="5.0" VBox.vgrow="NEVER">
+    <HBox id="HBox" alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="56.0" prefWidth="900.0" spacing="5.0" VBox.vgrow="NEVER">
       <children>
-        <Pane prefHeight="83.0" prefWidth="894.0" HBox.hgrow="ALWAYS">
+            <Button mnemonicParsing="false" onAction="#botonAnadir" styleClass="custom-button" text="Añadir" HBox.hgrow="NEVER" />
+            <Button mnemonicParsing="false" onAction="#botonEliminar" styleClass="custom-button" text="Eliminar" HBox.hgrow="NEVER" />
+            <Button mnemonicParsing="false" onAction="#botonActualizar" styleClass="custom-button" text="Actualizar" HBox.hgrow="NEVER" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="588.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button layoutX="6.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonAnadir" styleClass="custom-button" text="Añadir" />
-                  <Button layoutX="114.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonEliminar" styleClass="custom-button" text="Eliminar" />
-                  <Button layoutX="832.0" mnemonicParsing="false" onAction="#verPerfil" styleClass="custom-button" text="👤" />
-                  <Button layoutX="226.0" layoutY="-1.0" mnemonicParsing="false" onAction="#botonActualizar" styleClass="custom-button" text="Actualizar" />
-                  <Button layoutX="349.0" mnemonicParsing="false" onAction="#botonActualizarLista" styleClass="custom-button" text="🔁" />
-               </children></Pane>
+                  <Button mnemonicParsing="false" onAction="#botonActualizarLista" styleClass="custom-button" text="🔁" />
+                  <Button mnemonicParsing="false" onAction="#verPerfil" styleClass="custom-button" text="👤" />
+               </children>
+            </HBox>
       </children>
       <padding>
         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
