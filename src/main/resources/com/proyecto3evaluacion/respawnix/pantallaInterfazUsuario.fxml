@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -72,7 +73,11 @@
       <items>
         <AnchorPane prefHeight="542.0" prefWidth="352.0">
                <children>
-                  <ListView fx:id="listaJuegosAComprar" layoutX="8.0" layoutY="61.0" onMouseClicked="#mostrarEnLaBarra" prefHeight="476.0" prefWidth="200.0" />
+                  <ListView fx:id="listaJuegosAComprar" layoutX="8.0" layoutY="61.0" onMouseClicked="#mostrarEnLaBarra" prefHeight="476.0" prefWidth="200.0" stylesheets="@estilos.css">
+                     <styleClass>
+                        <String fx:value="custom-listview" />
+                        <String fx:value="list-cell" />
+                     </styleClass></ListView>
                   <Label layoutX="40.0" layoutY="2.0" styleClass="titulo" text="VIDEOJUEGOS">
                      <font>
                         <Font size="22.0" />

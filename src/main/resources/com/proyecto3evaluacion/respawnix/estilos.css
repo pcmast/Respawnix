@@ -27,3 +27,29 @@
   -fx-text-fill: #333333;
 }
 
+.custom-listview {
+  -fx-background-color: white;
+  -fx-background-radius: 12;
+  -fx-border-radius: 12;
+  -fx-padding: 0;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+.custom-listview .list-cell {
+  -fx-background-color: transparent;
+  -fx-padding: 12 16;
+  -fx-border-color: #eee;
+  -fx-border-width: 0 0 1 0;
+  -fx-border-style: solid;
+  -fx-font-size: 10px;
+  -fx-transition: all 0.3s ease;
+  -fx-text-fill: black;
+}
+.custom-listview .list-cell:hover {
+  -fx-background-color: #f0f4ff;
+}
+
+.custom-listview .list-cell:selected {
+  -fx-background-color: #e0e7ff;
+  -fx-text-fill: #1d4ed8;
+  -fx-font-weight: bold;
+}

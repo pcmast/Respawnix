@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -63,7 +64,11 @@
                   <Font size="71.0" />
                </font>
             </Label>
-            <ListView fx:id="listaCompra" layoutX="52.0" layoutY="107.0" prefHeight="230.0" prefWidth="355.0" />
+            <ListView fx:id="listaCompra" layoutX="52.0" layoutY="107.0" prefHeight="230.0" prefWidth="355.0">
+               <styleClass>
+                  <String fx:value="custom-listview" />
+                  <String fx:value="list-cell" />
+               </styleClass></ListView>
             <TextField fx:id="cantidadAEliminar" layoutX="509.0" layoutY="191.0" prefHeight="26.0" prefWidth="102.0" text="1" />
             <Label layoutX="509.0" layoutY="164.0" text="Cuantos a eliminar:" />
             <Label fx:id="eliminado" layoutX="509.0" layoutY="272.0" prefHeight="18.0" prefWidth="178.0" textFill="#1100fc" />
