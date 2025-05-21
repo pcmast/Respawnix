@@ -1,10 +1,7 @@
 package com.proyecto3evaluacion.respawnix.controller;
 
 import com.proyecto3evaluacion.respawnix.DAO.*;
-import com.proyecto3evaluacion.respawnix.model.Tarjeta;
-import com.proyecto3evaluacion.respawnix.model.TarjetaPremium;
-import com.proyecto3evaluacion.respawnix.model.TarjetaVIP;
-import com.proyecto3evaluacion.respawnix.model.VideoJuego;
+import com.proyecto3evaluacion.respawnix.model.*;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -25,7 +22,7 @@ public class MenuPagoController {
      * @param actionEvent cuando el usuario le de a comprar
      */
     public void comprar(ActionEvent actionEvent) {
-        Map<String, Integer> list = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
+        Map<String, Integer> list = CestaCompra.getInstance().todaCesta();
         List<VideoJuego> juegos = VideoJuegoDAO.todosLosJuegos();
         double precio = 0;
         double precioTotal = 0;
@@ -49,7 +46,8 @@ public class MenuPagoController {
                         precio = videoJuego.getPrecio();
                     }
                     precioTotal = precio * cantidad;
-                    CestaCompraDAO.eliminarCesta(UsuarioActualController.getInstance().getUsuario().getEmail(), nombreJuego);
+                    CestaCompra.getInstance().eliminarSinResta(UsuarioActualController.getInstance().getUsuario().getEmail(),nombreJuego);
+
                 }
             }
 
@@ -58,18 +56,20 @@ public class MenuPagoController {
 
         List<Tarjeta> listaTarjetas = TarjetaDAO.todas();
 
+        if (premium) {
+            premiumUsado();
+        }
+        if (vipBoolean) {
+            vipUsado();
+        }
+
         if (bono) {
             for (Tarjeta tarjeta : listaTarjetas) {
                 if (tarjeta.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
                     TarjetaDAO.tarjetaUsada(UsuarioActualController.getInstance().getUsuario().getEmail());
                 }
             }
-            if (premium) {
-                premiumUsado();
-            }
-            if (vipBoolean) {
-                vipUsado();
-            }
+
         }
 
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();

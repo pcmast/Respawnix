@@ -53,7 +53,7 @@ public class ListaCompraController {
     public void initialize() {
         mostrarLista();
         List<VideoJuego> juegos = VideoJuegoDAO.todosLosJuegos();
-        Map<String, Integer> juegosLista = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
+        Map<String, Integer> juegosLista = CestaCompra.getInstance().todaCesta();
         String nombreJuego;
         int cantidad =0;
         double precio = 0;
@@ -108,7 +108,7 @@ public class ListaCompraController {
      * y luego añade en la lista de la compra el nombre del juego su precio individual y la cantidad que hay añadida en la cesta
      */
     public void mostrarLista() {
-        Map<String, Integer> contador = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
+        Map<String, Integer> contador = CestaCompra.getInstance().todaCesta();
         List<VideoJuego> todosLosJuegos = VideoJuegoDAO.todosLosJuegos();
         ObservableList<String> listaVisual = FXCollections.observableArrayList();
 
@@ -130,7 +130,7 @@ public class ListaCompraController {
      * @param actionEvent
      */
     public void comprar(ActionEvent actionEvent) {
-        Map<String, Integer> cesta = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
+        Map<String, Integer> cesta = CestaCompra.getInstance().todaCesta();
         if (!cesta.isEmpty()){
         FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaCompra.fxml"));
         Scene scene = null;
@@ -144,7 +144,7 @@ public class ListaCompraController {
             stage.setScene(scene);
             stage.setTitle("Respawnix");
             stage.centerOnScreen();
-            stage.showAndWait();
+            stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -166,7 +166,7 @@ public class ListaCompraController {
         }
         String nombreJuego = seleccion.split(" \\| ")[0].trim();
         String email = UsuarioActualController.getInstance().getUsuario().getEmail();
-        Map<String, Integer> list = CestaCompraDAO.cesta(email);
+        Map<String, Integer> list = CestaCompra.getInstance().todaCesta();
         int resta = 0;
         int cantEliminar;
         int cantidad = 0;
@@ -185,7 +185,8 @@ public class ListaCompraController {
         if (cantEliminar < 0 || cantEliminar > cantidad) {
             eliminado.setText("Cantidad inválida.");
         } else {
-            CestaCompraDAO.eliminarCestaOActualizar(email, nombreJuego, resta);
+            CestaCompra.getInstance().eliminar(nombreJuego,resta);
+            //CestaCompraDAO.eliminarCestaOActualizar(email, nombreJuego, resta);
         }
 
 
@@ -205,7 +206,7 @@ public class ListaCompraController {
      */
     public void precioCestaSet(){
         List<VideoJuego> juegos = VideoJuegoDAO.todosLosJuegos();
-        Map<String, Integer> juegosLista = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
+        Map<String, Integer> juegosLista = CestaCompra.getInstance().todaCesta();
         String nombreJuego;
         int cantidad = 0;
         double precio = 0;

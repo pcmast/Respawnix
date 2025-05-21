@@ -18,7 +18,6 @@ public class RespawnixApplication extends Application {
         File imagenURL = new File("images/MANDOPEQUEÑO.png");
         Image image = new Image(imagenURL.toURI().toString());
         stage.getIcons().add(image);
-
         stage.setTitle("Respawnix");
         stage.setScene(scene);
         stage.show();

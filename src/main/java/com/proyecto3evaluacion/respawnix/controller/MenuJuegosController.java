@@ -155,12 +155,12 @@ public class MenuJuegosController {
      */
     public void botonEliminar(ActionEvent actionEvent) {
         VideoJuego videoJuegoSeleccionado = mostrarJuegosAnadidos.getSelectionModel().getSelectedItem();
-        if (videoJuegoSeleccionado != null) {
+
             videoJuegos.remove(videoJuegoSeleccionado);
             barraLateralInfo(null);
             VideoJuegoDAO.eliminarJuego(videoJuegoSeleccionado);
-        }
 
+        botonActualizarLista();
 
     }
 

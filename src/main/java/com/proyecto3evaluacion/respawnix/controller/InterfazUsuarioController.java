@@ -150,7 +150,7 @@ public class InterfazUsuarioController {
                 stage.setScene(scene);
                 stage.setTitle("respawnix");
                 stage.setOnCloseRequest(event -> stage = null); //dejo la variable stage en null para que luego se pueda abrir de nuevo la ventana
-                stage.showAndWait();
+                stage.show();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -196,10 +196,9 @@ public class InterfazUsuarioController {
             VideoJuego seleccionado = listaJuegosAComprar.getSelectionModel().getSelectedItem();
             UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
             CestaCompra cestaCompra = CestaCompra.getInstance();
-            CestaCompra.setEmailUsuario(usuarioActualController.getUsuario().getEmail());
-            cestaCompra.annadir(seleccionado.getNombre());
+            cestaCompra.setEmailUsuario(usuarioActualController.getUsuario().getEmail());
+            cestaCompra.annadir(seleccionado.getNombre(), Integer.parseInt(cantidadAComprar.getText()));
 
-            CestaCompraDAO.actualizarEnLaLista(usuarioActualController.getUsuario().getEmail(), seleccionado.getNombre(), Integer.parseInt(cantidadAComprar.getText()));
             videoJuegoAnnadido.setText("Añadido a la cesta");
         } else {
             videoJuegoAnnadido.setText("Cantidad no válida");

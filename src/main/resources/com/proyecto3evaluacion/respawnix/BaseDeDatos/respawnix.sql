@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2025 a las 12:07:02
+-- Tiempo de generación: 21-05-2025 a las 16:09:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -36,6 +36,7 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`emailUsuario`) VALUES
+('dylan@gmail.com'),
 ('pedro@gmail.com');
 
 -- --------------------------------------------------------
@@ -105,6 +106,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`Nombre`, `apellidos`, `fechaNacimiento`, `email`, `password`) VALUES
 ('antonio', 'luna marquez', '2000-05-11', 'antonio@gmail.com', '$2a$10$YsqyGwk6MD2hSo48NhnsMOSoiPIgYxLFWgYhlAyN4wT9s70NbQya6'),
+('Dylan', 'Abaz rivas', '2005-05-20', 'dylan@gmail.com', '$2a$10$4lPK4D9nZYF9QzlLcvEMjOI9Q3N4y8KXKfHCmlujzaerh22ayI/0G'),
 ('Javier', 'adamuz montoro', '2006-03-13', 'javi@gmail.com', '$2a$10$rk7HOUewjuUlSrUjlXq/8.Hr3GGTstgzNAQ8u9gE0U5bgmeoCKb7C'),
 ('pedro', 'castaño marin', '2005-02-02', 'pedro@gmail.com', '$2a$10$QCkrQDn1vylaWgy.u/ytNeB0VkZwq/njBURahpZjVtDM9qy5K3acO');
 
@@ -130,7 +132,7 @@ CREATE TABLE `videojuego` (
 INSERT INTO `videojuego` (`nombre`, `descripcion`, `genero`, `plataforma`, `precio`, `Imagen`) VALUES
 ('Blasphemous', 'Un metroidvania de acción brutal ambientado en un mundo oscuro e inspirado en el folclore y el arte religioso español.', 'Acción, Metroidvania, Souls-like, Plataformas', 'PC, PS4, XBOX ONE', 24.99, 'images\\Blasphemous.jpg'),
 ('Cyberpunk 2077', 'Un juego de rol en un mundo futurista donde los jugadores asumen el papel de V, un mercenario en la ciudad distópica de Night City. El juego se caracteriza por su narrativa compleja y un mundo abierto lleno de decisiones y misiones.', 'RPG, Acción', 'PC, PlayStation 4, Xbox One, PlayStation 5, Xbox Series X/S', 59.99, 'images\\Cyberpunk 2077.jpg'),
-('Dark Souls', '\"Dark Souls\" es un videojuego de rol y acción desarrollado por FromSoftware. Es conocido por su dificultad, diseño de niveles interconectados y su atmósfera oscura y sombría', 'RPG, Acción, Aventura', 'PS3, Xbox 360, PC', 39.99, 'images\\Dark souls 1.jpg'),
+('Dark Souls', '\"Dark Souls\" es un videojuego de rol y acción desarrollado por FromSoftware. Es conocido por su dificultad, diseño de niveles interconectados y su atmósfera oscura y sombría', 'RPG, Acción, Aventura', 'PS3, Xbox 360, PC', 29.99, 'images\\Dark souls 1.jpg'),
 ('Dark Souls II', 'La secuela del aclamado \"Dark Souls\", presenta un nuevo protagonista en un mundo igualmente brutal y lleno de desafíos. Con nuevas mecánicas y un sistema de combate refinado, \"Dark Souls II\" continúa la tradición de dificultad extrema y narrativa sutil', 'RPG, Acción, Aventura', 'PS3, Xbox 360, PC', 29.99, 'images\\dark souls 2.jpg'),
 ('Dark Souls III', 'Un juego de rol de acción conocido por su dificultad extrema, combate desafiante y mundo interconectado. Los jugadores exploran un mundo oscuro y peligroso, luchando contra enemigos y jefes.', 'RPG, Acción, Aventura', 'PC, PlayStation 4, Xbox One', 39.99, 'images\\dark souls 3.jpg'),
 ('Dead Cells', 'Dead Cells mezcla elementos de roguelike y metroidvania en una experiencia frenética con combates fluidos. Cada muerte reinicia el juego, pero te permite mejorar lentamente, lo que fomenta la experimentación y la perseverancia.', 'Roguelike, Acción, Plataformas', 'PC, PS4, Xbox One, Nintendo Switch, iOS, Android', 24.99, 'images\\deadCells.jpg'),
@@ -140,7 +142,6 @@ INSERT INTO `videojuego` (`nombre`, `descripcion`, `genero`, `plataforma`, `prec
 ('Hollow Knight', 'Hollow Knight es un metroidvania de acción en 2D que te pone en la piel de un misterioso caballero que explora el vasto y arruinado reino de Hallownest. Con un arte dibujado a mano, una ambientación melancólica y combates exigentes, es una experiencia profundamente inmersiva.', 'Metroidvania, Acción, Aventura', 'PC, Nintendo Switch, PS4, Xbox One', 20.00, 'images\\hollowKnight.png'),
 ('Minecraft', 'Minecraft es un videojuego de construcción de tipo \"sandbox\", en el que los jugadores pueden explorar mundos generados aleatoriamente y construir estructuras a partir de bloques.', 'Aventura / Sandbox', 'PC', 27.95, 'images\\Minecraft.jpg'),
 ('Red Dead Redemption 2', 'Un juego de acción y aventura en mundo abierto que narra la historia de Arthur Morgan, un miembro de una banda de forajidos en el siglo XIX. El juego es conocido por su historia épica y su recreación detallada de un mundo salvaje.', 'Acción, Aventura', 'PC, PlayStation 4, Xbox One', 59.99, 'images\\Red Dead Redemption 2.jpg'),
-('Returnal', 'En Returnal, juegas como Selene, una astronauta atrapada en un planeta alienígena que cambia cada vez que muere. Este roguelike de disparos en tercera persona mezcla acción intensa, atmósfera opresiva y narrativa fragmentada en un ciclo de muerte constante.', 'Roguelike, Acción, Ciencia Ficción', 'PS5, PC', 69.99, 'images\\returnal.jpg'),
 ('The Witcher 3: Wild Hunt', 'The Witcher 3 te pone en la piel de Geralt de Rivia, un cazador de monstruos en un mundo abierto vibrante y adulto. Ofrece una narrativa profunda, elecciones morales y un sistema de combate táctico con espadas, magia y alquimia.', 'RPG, Aventura, Mundo Abierto', 'PS4, PS5, Xbox One, Xbox Series X|S, PC, Nintendo Switch', 39.99, 'images\\The Witcher 3.jpg');
 
 -- --------------------------------------------------------
@@ -163,20 +164,14 @@ CREATE TABLE `videojuegoscomprados` (
 --
 
 INSERT INTO `videojuegoscomprados` (`idJuegoComprado`, `emailUsuario`, `NombreJuego`, `precioJuego`, `precioTotal`, `cantidad`) VALUES
-(32, 'antonio@gmail.com', 'Blasphemous', 24.99, 24.99, 1),
-(33, 'antonio@gmail.com', 'Elden Ring', 56.99, 56.99, 1),
-(34, 'antonio@gmail.com', 'Dark Souls III', 35.99, 35.99, 1),
-(35, 'antonio@gmail.com', 'Dark Souls III', 35.99, 35.99, 1),
-(36, 'antonio@gmail.com', 'Minecraft', 25.16, 25.16, 1),
-(37, 'antonio@gmail.com', 'Blasphemous', 23.74, 23.74, 1),
-(38, 'antonio@gmail.com', 'Hades', 24.99, 24.99, 1),
-(39, 'antonio@gmail.com', 'Minecraft', 27.95, 27.95, 1),
-(40, 'antonio@gmail.com', 'Elden Ring', 59.99, 59.99, 1),
-(41, 'antonio@gmail.com', 'Minecraft', 25.16, 25.16, 1),
-(42, 'antonio@gmail.com', 'Dark Souls', 39.99, 39.99, 1),
-(43, 'antonio@gmail.com', 'Minecraft', 27.95, 27.95, 1),
-(44, 'antonio@gmail.com', 'Grand Theft Auto V', 39.99, 39.99, 1),
-(45, 'antonio@gmail.com', 'Red Dead Redemption 2', 59.99, 59.99, 1);
+(1, 'antonio@gmail.com', 'Dead Cells', 22.49, 22.49, 1),
+(3, 'antonio@gmail.com', 'Grand Theft Auto V', 35.99, 35.99, 1),
+(4, 'antonio@gmail.com', 'Blasphemous', 22.49, 22.49, 1),
+(5, 'antonio@gmail.com', 'Grand Theft Auto V', 35.99, 35.99, 1),
+(6, 'antonio@gmail.com', 'Elden Ring', 53.99, 53.99, 1),
+(7, 'antonio@gmail.com', 'Dark Souls', 28.49, 28.49, 1),
+(8, 'antonio@gmail.com', 'Cyberpunk 2077', 59.99, 119.98, 2),
+(9, 'antonio@gmail.com', 'Dark Souls II', 29.99, 29.99, 1);
 
 --
 -- Índices para tablas volcadas
@@ -242,19 +237,19 @@ ALTER TABLE `videojuegoscomprados`
 -- AUTO_INCREMENT de la tabla `cestacompra`
 --
 ALTER TABLE `cestacompra`
-  MODIFY `idCesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `idCesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT de la tabla `tarjeta`
 --
 ALTER TABLE `tarjeta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `videojuegoscomprados`
 --
 ALTER TABLE `videojuegoscomprados`
-  MODIFY `idJuegoComprado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idJuegoComprado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
@@ -278,6 +273,18 @@ ALTER TABLE `cestacompra`
 --
 ALTER TABLE `tarjeta`
   ADD CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tarjetapremium`
+--
+ALTER TABLE `tarjetapremium`
+  ADD CONSTRAINT `tarjetapremium_ibfk_1` FOREIGN KEY (`email`) REFERENCES `tarjeta` (`email`);
+
+--
+-- Filtros para la tabla `tarjetavip`
+--
+ALTER TABLE `tarjetavip`
+  ADD CONSTRAINT `tarjetavip_ibfk_1` FOREIGN KEY (`email`) REFERENCES `tarjeta` (`email`);
 
 --
 -- Filtros para la tabla `videojuegoscomprados`

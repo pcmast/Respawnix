@@ -2,6 +2,7 @@ package com.proyecto3evaluacion.respawnix.controller;
 
 import com.proyecto3evaluacion.respawnix.DAO.CestaCompraDAO;
 import com.proyecto3evaluacion.respawnix.DAO.VideoJuegoDAO;
+import com.proyecto3evaluacion.respawnix.model.CestaCompra;
 import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,7 +72,8 @@ public class ActualizarJuegoController {
 
             double precio = Double.parseDouble(campoPrecio.getText());
 
-            CestaCompraDAO.actualizarNombre(campoNombreAntiguo.getText(),campoNombre.getText());
+//            CestaCompraDAO.actualizarNombre(campoNombreAntiguo.getText(),campoNombre.getText());
+            CestaCompra.getInstance().actualizar(campoNombreAntiguo.getText(),campoNombre.getText());
 
             VideoJuegoDAO.juegosActualizar(campoDescripcion.getText(),campoGenero.getText(),campoPlataforma.getText(),precio,campoNombre.getText());
 
