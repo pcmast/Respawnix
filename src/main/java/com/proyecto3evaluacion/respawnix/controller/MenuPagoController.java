@@ -46,7 +46,7 @@ public class MenuPagoController {
                         precio = videoJuego.getPrecio();
                     }
                     precioTotal = precio * cantidad;
-                    CestaCompra.getInstance().eliminarSinResta(UsuarioActualController.getInstance().getUsuario().getEmail(),nombreJuego);
+                    CestaCompra.getInstance().eliminarDescuento(UsuarioActualController.getInstance().getUsuario().getEmail(),nombreJuego);
 
                 }
             }

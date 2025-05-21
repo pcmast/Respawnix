@@ -54,7 +54,7 @@ public class CestaCompra implements CestaCompraInterfaz<String> {
 
     }
 
-    public void eliminarSinResta(String email, String nombreJuego){
+    public void eliminarDescuento(String email, String nombreJuego){
             CestaCompraDAO.eliminarCesta(email,nombreJuego);
     }
 
