@@ -57,7 +57,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <TextField layoutX="55.0" layoutY="101.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
+            <TextField fx:id="numeroTarjeta" layoutX="55.0" layoutY="101.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
             <Label layoutX="55.0" layoutY="77.0" text="Numero de tarjeta" />
             <Label layoutX="177.0" layoutY="137.0" styleClass="titulo" text="Informacion de facturación">
                <font>
@@ -71,23 +71,23 @@
             </Label>
             <Label layoutX="355.0" layoutY="77.0" text="Fecha de caducidad" />
             <Label layoutX="481.0" layoutY="77.0" prefHeight="18.0" prefWidth="112.0" text="Codigo de seguridad" />
-            <TextField layoutX="355.0" layoutY="101.0" prefHeight="26.0" prefWidth="105.0" styleClass="custom-text-field" />
-            <TextField layoutX="481.0" layoutY="101.0" prefHeight="26.0" prefWidth="34.0" styleClass="custom-text-field" />
+            <TextField fx:id="fechaCaducidad" layoutX="355.0" layoutY="101.0" prefHeight="26.0" prefWidth="105.0" styleClass="custom-text-field" />
+            <TextField fx:id="codigoSeguridad" layoutX="481.0" layoutY="101.0" prefHeight="26.0" prefWidth="34.0" styleClass="custom-text-field" />
             <Label layoutX="55.0" layoutY="172.0" text="Nombre" />
             <Label layoutX="135.0" layoutY="172.0" text="Apellido" />
             <Label layoutX="55.0" layoutY="227.0" text="Direccion de facturación" />
-            <TextField layoutX="55.0" layoutY="192.0" prefHeight="26.0" prefWidth="72.0" styleClass="custom-text-field" />
-            <TextField layoutX="135.0" layoutY="192.0" prefHeight="26.0" prefWidth="72.0" styleClass="custom-text-field" />
-            <TextField layoutX="55.0" layoutY="248.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
-            <TextField layoutX="355.0" layoutY="192.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
+            <TextField fx:id="nombre" layoutX="55.0" layoutY="192.0" prefHeight="26.0" prefWidth="72.0" styleClass="custom-text-field" />
+            <TextField fx:id="apellidos" layoutX="135.0" layoutY="192.0" prefHeight="26.0" prefWidth="72.0" styleClass="custom-text-field" />
+            <TextField fx:id="direccion" layoutX="55.0" layoutY="248.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
+            <TextField fx:id="localidad" layoutX="355.0" layoutY="192.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
             <Label layoutX="355.0" layoutY="172.0" text="Localidad" />
             <Label layoutX="355.0" layoutY="226.0" text="Codigo postal" />
-            <TextField layoutX="355.0" layoutY="238.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
-            <TextField layoutX="55.0" layoutY="295.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
+            <TextField fx:id="codigoPostal" layoutX="355.0" layoutY="238.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
+            <TextField fx:id="pais" layoutX="55.0" layoutY="295.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
             <Label layoutX="55.0" layoutY="278.0" text="Pais" />
             <Button layoutX="508.0" layoutY="325.0" mnemonicParsing="false" onAction="#comprar" styleClass="custom-button" text="COMPRAR" />
             <Label layoutX="355.0" layoutY="274.0" text="Telefono" />
-            <TextField layoutX="355.0" layoutY="286.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
+            <TextField fx:id="telefono" layoutX="355.0" layoutY="286.0" prefHeight="26.0" prefWidth="186.0" styleClass="custom-text-field" />
             <ImageView fitHeight="50.0" fitWidth="66.0" layoutX="560.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
             <CheckBox layoutX="457.0" layoutY="20.0" mnemonicParsing="false" onAction="#usarBONO" text="¿APLICAR BONO?" />
          </children>

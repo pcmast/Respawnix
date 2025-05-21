@@ -30,6 +30,8 @@ import java.util.List;
 public class MenuAnnadirJuegoController {
 
     @FXML
+    private Label datosIntroducidos;
+    @FXML
     private TextField nombreJuego;
     @FXML
     private TextField plataformaDelJuego;
@@ -46,6 +48,7 @@ public class MenuAnnadirJuegoController {
     private ObservableList<VideoJuego> list = FXCollections.observableArrayList();
     private Stage stage;
     private VideoJuego videoJuego;
+    private boolean actualizado = false;
 
     /**
      * Metodo que selecciona una imagen del equipo para asignarsela a un videojuego
@@ -90,12 +93,56 @@ public class MenuAnnadirJuegoController {
      */
     public VideoJuego anadirJuego() {
         videoJuego = new VideoJuego();
-        String nombre = nombreJuego.getText();
-        String plataforma = plataformaDelJuego.getText();
-        String genero = generoJuego.getText();
-        Double precio = Double.valueOf(precioDelJuego.getText());
-        String descripcion = descripcionJuego.getText();
-        String imagen = rutaImagenJuego;
+        String nombre ="";
+        String plataforma ="";
+        String genero ="";
+        double precio =0;
+        String descripcion ="";
+        String imagen ="";
+        int nadaVacio =0;
+        if(!nombreJuego.getText().isEmpty()){
+            nombre = nombreJuego.getText();
+            nadaVacio++;
+        }else {
+            datosIntroducidos.setText("Debes Introducir todos los campos");
+        }
+        if (!plataformaDelJuego.getText().isEmpty()){
+            plataforma = plataformaDelJuego.getText();
+            nadaVacio++;
+        }else {
+            datosIntroducidos.setText("Debes Introducir todos los campos");
+        }
+
+        if (!generoJuego.getText().isEmpty()){
+            genero = generoJuego.getText();
+            nadaVacio++;
+        }else {
+            datosIntroducidos.setText("Debes Introducir todos los campos");
+        }
+        if (!precioDelJuego.getText().isEmpty()){
+            precio = Double.parseDouble((precioDelJuego.getText()));
+            nadaVacio++;
+        }else {
+            datosIntroducidos.setText("Debes Introducir todos los campos");
+        }
+        if (!descripcionJuego.getText().isEmpty()){
+            descripcion = descripcionJuego.getText();
+            nadaVacio++;
+        }else {
+            datosIntroducidos.setText("Debes Introducir todos los campos");
+        }
+
+        if (rutaImagenJuego != null){
+            imagen = rutaImagenJuego;
+            nadaVacio++;
+        }else {
+            datosIntroducidos.setText("Debes Introducir todos los campos");
+        }
+
+
+        if (nadaVacio == 6){
+
+
 
         videoJuego.setNombre(nombre);
         videoJuego.setPlataforma(plataforma);
@@ -106,8 +153,9 @@ public class MenuAnnadirJuegoController {
         videoJuego.setImagen(imagen);
 
 
-
+        actualizado = true;
         VideoJuegoDAO.insertarJuego(nombre,descripcion,genero,plataforma,precio,imagen);
+        }
 
         return videoJuego;
     }
@@ -138,11 +186,12 @@ public class MenuAnnadirJuegoController {
      */
     public void anadirJuegoSalir (ActionEvent actionEvent){
         videoJuego = anadirJuego();
+        if (actualizado){
         list.add(videoJuego);
         if (stage != null) {
             stage.close();
         }
-
+        }
 
     }
 

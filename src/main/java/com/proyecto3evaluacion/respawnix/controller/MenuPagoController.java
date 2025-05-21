@@ -3,8 +3,10 @@ package com.proyecto3evaluacion.respawnix.controller;
 import com.proyecto3evaluacion.respawnix.DAO.*;
 import com.proyecto3evaluacion.respawnix.model.*;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -12,9 +14,33 @@ import java.util.Map;
 
 public class MenuPagoController {
 
+    @FXML
+    private TextField numeroTarjeta;
+    @FXML
+    private TextField fechaCaducidad;
+    @FXML
+    private TextField codigoSeguridad;
+    @FXML
+    private TextField nombre;
+    @FXML
+    private TextField apellidos;
+    @FXML
+    private TextField direccion;
+    @FXML
+    private TextField localidad;
+    @FXML
+    private TextField codigoPostal;
+    @FXML
+    private TextField pais;
+    @FXML
+    private TextField telefono;
     private boolean vipBoolean = false;
     private boolean premium = false;
     private boolean bono = false;
+
+
+
+
 
     /**
      * Metodo que coge toda la cesta de la compra del usuario actual y calcula el precio del descuento si se a querido aplicar

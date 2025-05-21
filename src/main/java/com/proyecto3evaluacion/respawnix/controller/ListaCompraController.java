@@ -26,9 +26,10 @@ import java.util.*;
 
 public class ListaCompraController {
 
-
-    public Label precioPorcentaje;
-    public Label porcentaje;
+    @FXML
+    private Label precioPorcentaje;
+    @FXML
+    private Label porcentaje;
 
 
     @FXML

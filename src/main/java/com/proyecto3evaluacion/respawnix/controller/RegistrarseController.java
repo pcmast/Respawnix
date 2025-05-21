@@ -32,8 +32,8 @@ import java.util.Locale;
 
 public class RegistrarseController {
 
-
-    public ImageView logo;
+    @FXML
+    private ImageView logo;
     @FXML
     private Label claveErronea;
     @FXML

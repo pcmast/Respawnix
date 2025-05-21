@@ -24,7 +24,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class IniciarSesionController {
-    public ImageView logo;
+    @FXML
+    private ImageView logo;
     @FXML
     private Label emailContraseIncorrecto;
     @FXML

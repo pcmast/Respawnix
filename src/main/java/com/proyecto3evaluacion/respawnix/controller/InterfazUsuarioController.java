@@ -25,12 +25,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InterfazUsuarioController {
-
-    public Label videoJuegoAnnadido;
-    public TextField cantidadAComprar;
-    public TextField buscar;
-    public Label vacio;
-
+    @FXML
+    private Label videoJuegoAnnadido;
+    @FXML
+    private TextField cantidadAComprar;
+    @FXML
+    private TextField buscar;
+    @FXML
+    private Label vacio;
 
     @FXML
     private ImageView imagen;

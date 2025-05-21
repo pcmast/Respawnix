@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuJuegosController {
-
-    public Label vacio;
+    @FXML
+    private Label vacio;
     @FXML
     private ListView<VideoJuego> mostrarJuegosAnadidos;
     @FXML
