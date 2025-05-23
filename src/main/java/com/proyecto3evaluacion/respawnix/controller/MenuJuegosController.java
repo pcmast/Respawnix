@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -228,9 +229,13 @@ public class MenuJuegosController {
      */
     public void botonActualizar(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaActualizarJuego.fxml"));
+        VideoJuego juegoSeleccionado = mostrarJuegosAnadidos.getSelectionModel().getSelectedItem();
         try {
+            Parent root = fxmlLoader.load();
+            ActualizarJuegoController controller = fxmlLoader.getController();
+            controller.setVideoJuego(juegoSeleccionado);
             Scene scene = null;
-            scene = new Scene(fxmlLoader.load());
+            scene = new Scene(root);
             stage = new Stage();
             File imagenURLIcono = new File("images/MANDOPEQUEÑO.png");
             Image imageIcono = new Image(imagenURLIcono.toURI().toString());

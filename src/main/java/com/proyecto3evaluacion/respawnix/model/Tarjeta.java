@@ -1,20 +1,21 @@
 package com.proyecto3evaluacion.respawnix.model;
 
+import com.proyecto3evaluacion.respawnix.controller.UsuarioActualController;
+
 public class Tarjeta {
 
     private int id;
     private String nombre;
-    private String email;
+    private Usuario usuario;
 
 
-    public Tarjeta(int id, String nombre, String email) {
+    public Tarjeta(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.email = email;
-
+        usuario = UsuarioActualController.getInstance().getUsuario();
     }
     public Tarjeta(){
-
+        usuario = UsuarioActualController.getInstance().getUsuario();
     }
 
     public int getId() {
@@ -33,12 +34,12 @@ public class Tarjeta {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 

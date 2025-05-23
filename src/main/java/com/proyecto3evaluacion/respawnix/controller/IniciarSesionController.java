@@ -4,6 +4,7 @@ import com.proyecto3evaluacion.respawnix.DAO.AdministradorDAO;
 import com.proyecto3evaluacion.respawnix.DAO.UsuarioDAO;
 import com.proyecto3evaluacion.respawnix.RespawnixApplication;
 import com.proyecto3evaluacion.respawnix.model.Administrador;
+import com.proyecto3evaluacion.respawnix.model.CestaCompra;
 import com.proyecto3evaluacion.respawnix.model.Usuario;
 import com.proyecto3evaluacion.respawnix.utils.PasswordUtils;
 import javafx.event.ActionEvent;
@@ -64,7 +65,7 @@ public class IniciarSesionController {
                 usuarioActualController.setUsuario(usuario);
                 existe = true;
                 for (Administrador administrador : administradors) {
-                    if (administrador.getEmailUsuario().equals(email)) {
+                    if (administrador.getUsuario().getEmail().equals(email)) {
                         iniciarSesionExitosoAdministrador(event);
                         return;
                     }
@@ -73,6 +74,7 @@ public class IniciarSesionController {
         }
         if (existe){
             iniciarSesionDeCliente(event);
+            UsuarioActualController.getInstance().getUsuario().setCesta();
         }else {
         emailContraseIncorrecto.setText("Contraseña o email incorrecto");
         }

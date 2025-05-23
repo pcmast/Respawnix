@@ -48,7 +48,7 @@ public class MenuPagoController {
      * @param actionEvent cuando el usuario le de a comprar
      */
     public void comprar(ActionEvent actionEvent) {
-        Map<String, Integer> list = CestaCompra.getInstance().todaCesta();
+        Map<String, Integer> list = UsuarioActualController.getInstance().getUsuario().getCesta().todaCesta();
         List<VideoJuego> juegos = VideoJuegoDAO.todosLosJuegos();
         double precio = 0;
         double precioTotal = 0;
@@ -72,12 +72,17 @@ public class MenuPagoController {
                         precio = videoJuego.getPrecio();
                     }
                     precioTotal = precio * cantidad;
-                    CestaCompra.getInstance().eliminarDescuento(UsuarioActualController.getInstance().getUsuario().getEmail(),nombreJuego);
-
+                    UsuarioActualController.getInstance().getUsuario().getCesta().eliminarDescuento(videoJuego,UsuarioActualController.getInstance().getUsuario().getEmail());
                 }
             }
 
-            VideoJuegoCompradoDAO.insertarJuegoComprado(UsuarioActualController.getInstance().getUsuario().getEmail(), nombreJuego, precio, precioTotal, cantidad);
+            VideoJuegoComprado videoJuegoComprado = new VideoJuegoComprado();
+            videoJuegoComprado.setEmail(UsuarioActualController.getInstance().getUsuario().getEmail());
+            videoJuegoComprado.setNombreJuego(nombreJuego);
+            videoJuegoComprado.setCantidad(cantidad);
+            videoJuegoComprado.setPrecioTotal(precioTotal);
+            videoJuegoComprado.setPrecio(precio);
+            UsuarioActualController.getInstance().getUsuario().annadir(videoJuegoComprado);
         }
 
         List<Tarjeta> listaTarjetas = TarjetaDAO.todas();
@@ -91,7 +96,7 @@ public class MenuPagoController {
 
         if (bono) {
             for (Tarjeta tarjeta : listaTarjetas) {
-                if (tarjeta.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
+                if (tarjeta.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
                     TarjetaDAO.tarjetaUsada(UsuarioActualController.getInstance().getUsuario().getEmail());
                 }
             }
@@ -107,7 +112,7 @@ public class MenuPagoController {
     public void premiumUsado() {
         List<TarjetaPremium> list = TarjetaPremiumDAO.todasTarjetas();
         for (TarjetaPremium tarjetaPremium : list) {
-            if (tarjetaPremium.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
+            if (tarjetaPremium.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
                 TarjetaPremiumDAO.tarjetaUsada(UsuarioActualController.getInstance().getUsuario().getEmail());
             }
         }
@@ -119,7 +124,7 @@ public class MenuPagoController {
     public void vipUsado() {
         List<TarjetaVIP> list = TarjetaVIPDAO.todasTarjetas();
         for (TarjetaVIP tarjetaVIP : list) {
-            if (tarjetaVIP.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
+            if (tarjetaVIP.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
                 TarjetaVIPDAO.tarjetaUsada(UsuarioActualController.getInstance().getUsuario().getEmail());
             }
         }
@@ -147,13 +152,13 @@ public class MenuPagoController {
         List<TarjetaVIP> vip = TarjetaVIPDAO.todasTarjetas();
 
         for (TarjetaPremium tarjetaPremium : premiums) {
-            if (UsuarioActualController.getInstance().getUsuario().getEmail().equals(tarjetaPremium.getEmail())) {
+            if (UsuarioActualController.getInstance().getUsuario().getEmail().equals(tarjetaPremium.getUsuario().getEmail())) {
                 premium = true;
             }
         }
 
         for (TarjetaVIP tarjetaVIP : vip) {
-            if (UsuarioActualController.getInstance().getUsuario().getEmail().equals(tarjetaVIP.getEmail())) {
+            if (UsuarioActualController.getInstance().getUsuario().getEmail().equals(tarjetaVIP.getUsuario().getEmail())) {
                 vipBoolean = true;
             }
 

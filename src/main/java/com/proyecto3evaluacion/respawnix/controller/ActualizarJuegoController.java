@@ -20,8 +20,6 @@ public class ActualizarJuegoController {
     @FXML
     private Label nombreJuegoVacio;
     @FXML
-    private TextField campoNombreAntiguo;
-    @FXML
     private TextField campoNombre;
     @FXML
     private TextField campoDescripcion;
@@ -34,6 +32,19 @@ public class ActualizarJuegoController {
 
 
     /**
+     * Al iniciar esta pantalla desde menuJuegosController se pasa el videojuego que a seleccionado el usuario para actualizarlo
+     * y que salgan los datos para que el los modifique
+     * @param videoJuego videojuego seleccionado
+     */
+    public void setVideoJuego(VideoJuego videoJuego) {
+        campoNombre.setText(videoJuego.getNombre());
+        campoDescripcion.setText(videoJuego.getDescripcion());
+        campoGenero.setText(videoJuego.getGenero());
+        campoPlataforma.setText(videoJuego.getPlataforma());
+        campoPrecio.setText(String.valueOf(videoJuego.getPrecio()));
+    }
+
+    /**
      * Metodo que actualiza un objeto de la base de datos y tambien lo actualiza en la cesta de la compra si no se introduce
      * ningun dato aparte del nombre antiguo se dejan los datos tal cual estan
      * @param actionEvent recibe como parametro el click que ha dado el usuario para luego conseguir la ventana
@@ -44,11 +55,11 @@ public class ActualizarJuegoController {
         VideoJuego videoJuegoAntiguo = new VideoJuego();
         List<VideoJuego> list = VideoJuegoDAO.todosLosJuegos();
         for (VideoJuego videoJuego: list){
-            if (videoJuego.getNombre().equals(campoNombreAntiguo.getText())){
+            if (videoJuego.getNombre().equals(campoNombre.getText())){
             videoJuegoAntiguo = videoJuego;
             }
         }
-        if (campoNombreAntiguo.getText().isEmpty()){
+        if (campoNombre.getText().isEmpty()) {
             nombreJuegoVacio.setText("Introduce el nombre del juego");
             nombreVacio = true;
         }
@@ -72,8 +83,10 @@ public class ActualizarJuegoController {
 
             double precio = Double.parseDouble(campoPrecio.getText());
 
-//            CestaCompraDAO.actualizarNombre(campoNombreAntiguo.getText(),campoNombre.getText());
-            CestaCompra.getInstance().actualizar(campoNombreAntiguo.getText(),campoNombre.getText());
+            VideoJuego videoJuego = new VideoJuego();
+            videoJuego.setNombre(campoNombre.getText());
+
+           UsuarioActualController.getInstance().getUsuario().getCesta().actualizar(videoJuego);
 
             VideoJuegoDAO.juegosActualizar(campoDescripcion.getText(),campoGenero.getText(),campoPlataforma.getText(),precio,campoNombre.getText());
 

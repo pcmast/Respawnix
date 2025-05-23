@@ -9,5 +9,5 @@ public interface CestaCompraInterfaz<T> {
     void eliminar(T elemento, int cantidad);
     void eliminarDescuento(T elemento, String email);
     Map<String, Integer> todaCesta();
-    void actualizar(T elemento, String nombre);
+    void actualizar(T elemento);
 }

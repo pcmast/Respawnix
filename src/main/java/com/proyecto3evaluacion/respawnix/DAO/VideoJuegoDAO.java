@@ -17,7 +17,7 @@ public class VideoJuegoDAO {
     private final static String SQL_INSERT = "INSERT INTO videojuego (nombre, descripcion, genero, plataforma, precio, Imagen) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String SQL_DELETE = "DELETE FROM videojuego WHERE nombre = ? AND descripcion = ? AND genero = ? AND plataforma = ? AND precio = ? AND imagen = ?";
     private final static String SQL_NAME = "SELECT * FROM videojuego WHERE nombre LIKE ?";
-    private final static String SQL_UPDATE = "UPDATE videoJuego SET descripcion = ?, genero = ?, plataforma = ?, precio = ? WHERE nombre = ?";
+    private final static String SQL_UPDATE = "UPDATE videoJuego SET nombre = ?, descripcion = ?, genero = ?, plataforma = ?, precio = ? WHERE nombre = ?";
 
 
     /**
@@ -33,11 +33,12 @@ public class VideoJuegoDAO {
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, descripcion);
-            stmt.setString(2, genero);
-            stmt.setString(3, plataforma);
-            stmt.setDouble(4, precio);
-            stmt.setString(5, nombre);
+            stmt.setString(1,nombre);
+            stmt.setString(2, descripcion);
+            stmt.setString(3, genero);
+            stmt.setString(4, plataforma);
+            stmt.setDouble(5, precio);
+            stmt.setString(6, nombre);
             stmt.executeUpdate();
 
         } catch (SQLException e) {

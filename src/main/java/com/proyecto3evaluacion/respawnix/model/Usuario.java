@@ -1,7 +1,13 @@
 package com.proyecto3evaluacion.respawnix.model;
 
+import com.proyecto3evaluacion.respawnix.DAO.CestaCompraDAO;
+import com.proyecto3evaluacion.respawnix.DAO.VideoJuegoCompradoDAO;
+import com.proyecto3evaluacion.respawnix.controller.UsuarioActualController;
+
 import java.beans.FeatureDescriptor;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public class Usuario {
 
@@ -10,9 +16,18 @@ public class Usuario {
     private Date fechaNacimiento;
     private String email;
     private String password;
+    private ArrayList<VideoJuegoComprado> videojuegosComprados;
+    private CestaCompra cesta;
+
+
+    public Usuario() {
+        videojuegosComprados = (ArrayList<VideoJuegoComprado>) VideoJuegoCompradoDAO.todosLosJuegosPorEmail(email);
+
+    }
 
     public String getNombre() {
         return nombre;
+
     }
 
     public void setNombre(String nombre) {
@@ -50,4 +65,25 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public CestaCompra getCesta() {
+        cesta = CestaCompra.getInstance();
+        return cesta;
+    }
+
+    public void setCesta() {
+        cesta = CestaCompra.getInstance();
+    }
+
+    public void annadir(VideoJuegoComprado videoJuegoComprado) {
+        videojuegosComprados.add(videoJuegoComprado);
+        VideoJuegoCompradoDAO.insertarJuegoComprado(UsuarioActualController.getInstance().getUsuario().email, videoJuegoComprado.getVideouego(), videoJuegoComprado.getPrecio(), videoJuegoComprado.getPrecioTotal(), videoJuegoComprado.getCantidad());
+
+    }
+
+    public ArrayList<VideoJuegoComprado> todosJuegos() {
+        videojuegosComprados = (ArrayList<VideoJuegoComprado>) VideoJuegoCompradoDAO.todosLosJuegosPorEmail(this.email);
+        return videojuegosComprados;
+    }
+
 }

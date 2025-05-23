@@ -197,9 +197,10 @@ public class InterfazUsuarioController {
         if (Utilidades.validarNumero(cantidadAComprar.getText())) {
             VideoJuego seleccionado = listaJuegosAComprar.getSelectionModel().getSelectedItem();
             UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
-            CestaCompra cestaCompra = CestaCompra.getInstance();
-            cestaCompra.setEmailUsuario(usuarioActualController.getUsuario().getEmail());
-            cestaCompra.annadir(seleccionado.getNombre(), Integer.parseInt(cantidadAComprar.getText()));
+            CestaCompra cestaCompra = UsuarioActualController.getInstance().getUsuario().getCesta();
+
+            cestaCompra.setUsuario(UsuarioActualController.getInstance().getUsuario());
+            cestaCompra.annadir(seleccionado, Integer.parseInt(cantidadAComprar.getText()));
 
             videoJuegoAnnadido.setText("Añadido a la cesta");
         } else {

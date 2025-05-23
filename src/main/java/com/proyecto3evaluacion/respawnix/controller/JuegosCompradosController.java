@@ -34,7 +34,8 @@ public class JuegosCompradosController {
      * @return devuelve un ObservableList para que se pueda mostrar en el ListView
      */
     public ObservableList<VideoJuegoComprado> cargarLista() {
-        List<VideoJuegoComprado> list = VideoJuegoCompradoDAO.todosLosJuegosComprados();
+        List<VideoJuegoComprado> list = UsuarioActualController.getInstance().getUsuario().todosJuegos();
+
         ObservableList<VideoJuegoComprado> lista = FXCollections.observableArrayList();
         for (VideoJuegoComprado videoJuegoComprado : list){
             if (UsuarioActualController.getInstance().getUsuario().getEmail().equals(videoJuegoComprado.getEmail())){

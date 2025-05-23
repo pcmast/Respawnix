@@ -55,7 +55,6 @@
             <TextField fx:id="campoGenero" layoutX="159.0" layoutY="174.0" prefHeight="26.0" prefWidth="162.0" promptText="Genero" styleClass="custom-text-field" />
             <TextField fx:id="campoPlataforma" layoutX="159.0" layoutY="233.0" prefHeight="26.0" prefWidth="162.0" promptText="Plataforma" styleClass="custom-text-field" />
             <TextField fx:id="campoPrecio" layoutX="159.0" layoutY="301.0" prefHeight="26.0" prefWidth="162.0" promptText="Precio" styleClass="custom-text-field" />
-            <TextField fx:id="campoNombreAntiguo" layoutX="381.0" layoutY="41.0" prefHeight="26.0" prefWidth="162.0" promptText="Nombre antiguo" styleClass="custom-text-field" />
             <Label fx:id="nombreJuegoVacio" layoutX="381.0" layoutY="32.0" textFill="RED" />
          </children>
     </AnchorPane>

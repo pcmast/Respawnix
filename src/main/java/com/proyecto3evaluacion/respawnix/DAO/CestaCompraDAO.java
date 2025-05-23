@@ -12,19 +12,17 @@ public class CestaCompraDAO {
     private static final String SQL_UPDATE = "UPDATE cestaCompra SET cantidad = cantidad + ? WHERE emailUsuario = ? AND nombreVideojuego = ?";
     private static final String SQL_UPDATE_DELETE = "UPDATE cestaCompra SET cantidad = ? WHERE emailUsuario = ? AND nombreVideojuego = ?";
     private static final String SQL_DELETE = "DELETE FROM cestaCompra WHERE emailUsuario = ? AND nombreVideojuego = ?";
-    private static final String SQL_UPDATE_NAME ="UPDATE cestaCompra SET nombreVideoJuego = ? WHERE nombreVideoJuego = ?";
+    private static final String SQL_UPDATE_NAME ="UPDATE cestaCompra SET nombreVideoJuego = ?";
 
     /**
      * Metodo que actualiza en la base de datos un nombre por uno nuevo usando una consulta UPDATE
-     * @param nombre nombre antiguo 
      * @param nuevoNombre nombre nuevo
      */
-    public static void actualizarNombre(String nombre,String nuevoNombre){
+    public static void actualizarNombre(String nuevoNombre){
         Connection con = ConnectionDB.getConnection();
         try {
             PreparedStatement psUpdate = con.prepareStatement(SQL_UPDATE_NAME);
             psUpdate.setString(1, nuevoNombre);
-            psUpdate.setString(2, nombre);
             psUpdate.executeUpdate();
 
         }catch (SQLException e) {

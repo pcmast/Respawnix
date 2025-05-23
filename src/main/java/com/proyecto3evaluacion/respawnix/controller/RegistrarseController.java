@@ -186,7 +186,7 @@ public class RegistrarseController {
         }
             String contrasennaHash = PasswordUtils.hashPassword(contrasenna);
 
-            UsuarioDAO.insertarUsuarios(nombreUsuario,apellidosUsuario,fecha,email,contrasennaHash);
+
             if (clave.equals(claveXML)){
                 AdministradorDAO.insertarAdministrador(email);
             }
@@ -195,6 +195,7 @@ public class RegistrarseController {
             correoExistente.setText("Correo ya existe en el sistema");
         }else {
             correoExistente.setText("");
+            UsuarioDAO.insertarUsuarios(nombreUsuario,apellidosUsuario,fecha,email,contrasennaHash);
         }
         if (crearCuenta){
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

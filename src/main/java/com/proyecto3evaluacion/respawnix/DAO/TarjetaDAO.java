@@ -1,7 +1,9 @@
 package com.proyecto3evaluacion.respawnix.DAO;
 
 import com.proyecto3evaluacion.respawnix.baseDatos.ConnectionDB;
+import com.proyecto3evaluacion.respawnix.model.Administrador;
 import com.proyecto3evaluacion.respawnix.model.Tarjeta;
+import com.proyecto3evaluacion.respawnix.model.Usuario;
 import com.proyecto3evaluacion.respawnix.model.VideoJuego;
 
 import java.sql.*;
@@ -44,7 +46,7 @@ public class TarjetaDAO {
                 while (rs.next()) {
                     Tarjeta tarjeta = new Tarjeta();
                     tarjeta.setNombre(rs.getString("nombre"));
-                    tarjeta.setEmail(rs.getString("email"));
+
                     tarjetas.add(tarjeta);
                 }
             } catch (SQLException e) {

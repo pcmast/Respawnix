@@ -44,7 +44,7 @@ public class TarjetaPremiumDAO {
             ResultSet rs = stmt.executeQuery(SQL_ALL);
             while (rs.next()) {
                 TarjetaPremium tarjeta = new TarjetaPremium();
-                tarjeta.setEmail(rs.getString("email"));
+                tarjeta.getUsuario().setEmail(rs.getString("email"));
                 tarjetas.add(tarjeta);
             }
         } catch (SQLException e) {

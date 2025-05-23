@@ -9,14 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CestaCompra implements CestaCompraInterfaz<String> {
+public class CestaCompra implements CestaCompraInterfaz<VideoJuego> {
 
 
     private static CestaCompra instancia;
-    private  String emailUsuario;
-    private  Map<String, Integer> videoJuego = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
+    private  Usuario usuario;
+    private  Map<String, Integer> videoJuego;
 
     private CestaCompra() {
+        usuario = UsuarioActualController.getInstance().getUsuario();
+        videoJuego = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
     }
 
 
@@ -27,43 +29,36 @@ public class CestaCompra implements CestaCompraInterfaz<String> {
         return instancia;
     }
 
-    public String getEmailUsuario() {
-        return emailUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Map<String, Integer> getVideoJuego() {
-        videoJuego = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
-        return videoJuego;
-    }
-
-
-
-    public void annadir(String videoJuegoName, int cantidad) {
-        videoJuego.put(videoJuegoName,cantidad);
-        CestaCompraDAO.actualizarEnLaLista(UsuarioActualController.getInstance().getUsuario().getEmail(), videoJuegoName, cantidad);
+    public void annadir(VideoJuego juego, int cantidad) {
+        videoJuego.put(juego.getNombre(),cantidad);
+        CestaCompraDAO.actualizarEnLaLista(UsuarioActualController.getInstance().getUsuario().getEmail(),juego.getNombre(), cantidad);
 
     }
 
-    public void eliminar(String videoJuegoName, int resta){
-            videoJuego.remove(videoJuegoName);
-            CestaCompraDAO.eliminarCestaOActualizar(UsuarioActualController.getInstance().getUsuario().getEmail(), videoJuegoName, resta);
+    public void eliminar(VideoJuego juego, int resta){
+            videoJuego.remove(juego.getNombre());
+            CestaCompraDAO.eliminarCestaOActualizar(UsuarioActualController.getInstance().getUsuario().getEmail(), juego.getNombre(), resta);
 
     }
 
-    public void eliminarDescuento(String email, String nombreJuego){
-            CestaCompraDAO.eliminarCesta(email,nombreJuego);
+    public void eliminarDescuento(VideoJuego videoJuego, String email){
+            CestaCompraDAO.eliminarCesta(email,videoJuego.getNombre());
     }
 
     public Map<String, Integer> todaCesta(){
         videoJuego = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
         return videoJuego;
     }
-    public void actualizar(String nombreAntiguo, String nombre){
-        CestaCompraDAO.actualizarNombre(nombreAntiguo, nombre);
+    public void actualizar(VideoJuego videoJuego){
+        CestaCompraDAO.actualizarNombre(videoJuego.getNombre());
 
     }
 

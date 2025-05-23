@@ -25,7 +25,9 @@ public class AdministradorDAO {
             ResultSet rs = stmt.executeQuery(SQL_ALL);
             while (rs.next()) {
                 Administrador usuario = new Administrador();
-                usuario.setEmailUsuario(rs.getString("emailUsuario"));
+                Usuario usuario1 = new Usuario();
+                usuario1.setEmail(rs.getString("emailUsuario"));
+                usuario.setUsuario(usuario1);
                 list.add(usuario);
             }
         } catch (SQLException e) {

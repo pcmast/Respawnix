@@ -1,35 +1,34 @@
 package com.proyecto3evaluacion.respawnix.model;
 
+import com.proyecto3evaluacion.respawnix.controller.UsuarioActualController;
+
 public class VideoJuegoComprado {
 
-    private String email;
-    private String nombreJuego;
+    private Usuario usuario;
+    private VideoJuego videoJuego = new VideoJuego();
     private double precio;
+    private double precioTotal;
     private int cantidad;
 
 
-    public VideoJuegoComprado(String email, String nombreJuego) {
-        this.email = email;
-        this.nombreJuego = nombreJuego;
-    }
-
     public VideoJuegoComprado() {
+        usuario = UsuarioActualController.getInstance().getUsuario();
     }
 
     public String getEmail() {
-        return email;
+        return usuario.getEmail();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.usuario.setEmail(email);
     }
 
-    public String getNombreJuego() {
-        return nombreJuego;
+    public String getVideouego() {
+        return videoJuego.getNombre();
     }
 
     public void setNombreJuego(String nombreJuego) {
-        this.nombreJuego = nombreJuego;
+        videoJuego.setNombre(nombreJuego);
     }
 
     public double getPrecio() {
@@ -48,7 +47,31 @@ public class VideoJuegoComprado {
         this.cantidad = cantidad;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public VideoJuego getVideoJuego() {
+        return videoJuego;
+    }
+
+    public void setVideoJuego(VideoJuego videoJuego) {
+        this.videoJuego = videoJuego;
+    }
+
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
     public String toString() {
-        return this.nombreJuego + " " + this.precio+ " cantidad "+this.cantidad;
+        return this.videoJuego.getNombre() + " " + this.precio+ " cantidad "+this.cantidad;
     }
 }

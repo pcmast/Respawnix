@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UsuarioActualController {
     private static UsuarioActualController instance;
-    private Usuario usuario = null;
+    private Usuario usuario;
 
     /**
      * Obtiene la instancia única del controlador de usuario actual (Singleton).

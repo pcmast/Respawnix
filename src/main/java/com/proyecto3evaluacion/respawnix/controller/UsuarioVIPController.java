@@ -54,12 +54,12 @@ public class UsuarioVIPController {
         List<TarjetaPremium> listaPremium = TarjetaPremiumDAO.todasTarjetas();
         List<TarjetaVIP> listaVIP = TarjetaVIPDAO.todasTarjetas();
         for (TarjetaPremium tarjetaPremium : listaPremium){
-            if (tarjetaPremium.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (tarjetaPremium.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 comprado = true;
             }
         }
         for (TarjetaVIP tarjetaVIP : listaVIP){
-            if (tarjetaVIP.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (tarjetaVIP.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 comprado = true;
             }
         }
@@ -85,12 +85,12 @@ public class UsuarioVIPController {
         List<TarjetaPremium> listaPremium = TarjetaPremiumDAO.todasTarjetas();
         List<TarjetaVIP> listaVIP = TarjetaVIPDAO.todasTarjetas();
         for (TarjetaPremium tarjetaPremium : listaPremium){
-            if (tarjetaPremium.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (tarjetaPremium.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 comprado = true;
             }
         }
         for (TarjetaVIP tarjetaVIP : listaVIP){
-            if (tarjetaVIP.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (tarjetaVIP.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 comprado = true;
             }
         }

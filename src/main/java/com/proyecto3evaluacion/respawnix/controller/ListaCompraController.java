@@ -54,7 +54,8 @@ public class ListaCompraController {
     public void initialize() {
         mostrarLista();
         List<VideoJuego> juegos = VideoJuegoDAO.todosLosJuegos();
-        Map<String, Integer> juegosLista = CestaCompra.getInstance().todaCesta();
+
+        Map<String, Integer> juegosLista = UsuarioActualController.getInstance().getUsuario().getCesta().todaCesta();
         String nombreJuego;
         int cantidad =0;
         double precio = 0;
@@ -79,14 +80,14 @@ public class ListaCompraController {
         List<TarjetaVIP> vips = TarjetaVIPDAO.todasTarjetas();
 
         for (TarjetaPremium tarjetaPremium:premiums){
-            if (tarjetaPremium.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (tarjetaPremium.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 precioPor =(precio * 5) / 100;
                 comprado = true;
 
             }
         }
         for (TarjetaVIP vip: vips){
-            if (vip.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (vip.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 precioPor =(precio * 10) / 100;
                 comprado = true;
 
@@ -109,7 +110,7 @@ public class ListaCompraController {
      * y luego añade en la lista de la compra el nombre del juego su precio individual y la cantidad que hay añadida en la cesta
      */
     public void mostrarLista() {
-        Map<String, Integer> contador = CestaCompra.getInstance().todaCesta();
+        Map<String, Integer> contador = UsuarioActualController.getInstance().getUsuario().getCesta().todaCesta();
         List<VideoJuego> todosLosJuegos = VideoJuegoDAO.todosLosJuegos();
         ObservableList<String> listaVisual = FXCollections.observableArrayList();
 
@@ -131,7 +132,7 @@ public class ListaCompraController {
      * @param actionEvent
      */
     public void comprar(ActionEvent actionEvent) {
-        Map<String, Integer> cesta = CestaCompra.getInstance().todaCesta();
+        Map<String, Integer> cesta = UsuarioActualController.getInstance().getUsuario().getCesta().todaCesta();
         if (!cesta.isEmpty()){
         FXMLLoader fxmlLoader = new FXMLLoader(RespawnixApplication.class.getResource("pantallaCompra.fxml"));
         Scene scene = null;
@@ -167,7 +168,7 @@ public class ListaCompraController {
         }
         String nombreJuego = seleccion.split(" \\| ")[0].trim();
         String email = UsuarioActualController.getInstance().getUsuario().getEmail();
-        Map<String, Integer> list = CestaCompra.getInstance().todaCesta();
+        Map<String, Integer> list = UsuarioActualController.getInstance().getUsuario().getCesta().todaCesta();
         int resta = 0;
         int cantEliminar;
         int cantidad = 0;
@@ -186,8 +187,10 @@ public class ListaCompraController {
         if (cantEliminar < 0 || cantEliminar > cantidad) {
             eliminado.setText("Cantidad inválida.");
         } else {
-            CestaCompra.getInstance().eliminar(nombreJuego,resta);
-            //CestaCompraDAO.eliminarCestaOActualizar(email, nombreJuego, resta);
+            VideoJuego videoJuego = new VideoJuego();
+            videoJuego.setNombre(nombreJuego);
+            UsuarioActualController.getInstance().getUsuario().getCesta().eliminar(videoJuego,resta);
+
         }
 
 
@@ -207,7 +210,7 @@ public class ListaCompraController {
      */
     public void precioCestaSet(){
         List<VideoJuego> juegos = VideoJuegoDAO.todosLosJuegos();
-        Map<String, Integer> juegosLista = CestaCompra.getInstance().todaCesta();
+        Map<String, Integer> juegosLista = UsuarioActualController.getInstance().getUsuario().getCesta().todaCesta();
         String nombreJuego;
         int cantidad = 0;
         double precio = 0;
@@ -229,14 +232,14 @@ public class ListaCompraController {
         List<TarjetaVIP> vips = TarjetaVIPDAO.todasTarjetas();
 
         for (TarjetaPremium tarjetaPremium:premiums){
-            if (tarjetaPremium.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (tarjetaPremium.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 precioPor =(precio * 5) / 100;
                 comprado = true;
 
             }
         }
         for (TarjetaVIP vip: vips){
-            if (vip.getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
+            if (vip.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())){
                 precioPor =(precio * 10) / 100;
                 comprado = true;
 

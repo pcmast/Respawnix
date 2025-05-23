@@ -1,14 +1,17 @@
 package com.proyecto3evaluacion.respawnix.model;
 
 public class Administrador {
-    private String emailUsuario;
+    private Usuario usuario;
 
 
-    public String getEmailUsuario() {
-        return emailUsuario;
+    public Administrador() {
     }
 
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
