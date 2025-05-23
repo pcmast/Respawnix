@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2025 a las 16:09:30
+-- Tiempo de generación: 23-05-2025 a las 17:52:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -108,6 +108,8 @@ INSERT INTO `usuario` (`Nombre`, `apellidos`, `fechaNacimiento`, `email`, `passw
 ('antonio', 'luna marquez', '2000-05-11', 'antonio@gmail.com', '$2a$10$YsqyGwk6MD2hSo48NhnsMOSoiPIgYxLFWgYhlAyN4wT9s70NbQya6'),
 ('Dylan', 'Abaz rivas', '2005-05-20', 'dylan@gmail.com', '$2a$10$4lPK4D9nZYF9QzlLcvEMjOI9Q3N4y8KXKfHCmlujzaerh22ayI/0G'),
 ('Javier', 'adamuz montoro', '2006-03-13', 'javi@gmail.com', '$2a$10$rk7HOUewjuUlSrUjlXq/8.Hr3GGTstgzNAQ8u9gE0U5bgmeoCKb7C'),
+('luis', 'abaz', '2008-05-13', 'luis@gmail.com', '$2a$10$Oe69pz6o0g6AV.5OgfDXOuwml3AnlBKIuPQc77U900LOGzAqgjnR2'),
+('dylan', 'Abad Rivas', '2007-05-11', 'nuevoemail@gmail.com', '$2a$10$TvaNo.0pDfz1WxaU1moOF.cUYFzTDL5ef1Pf3q6pEgNs5lSaZszG.'),
 ('pedro', 'castaño marin', '2005-02-02', 'pedro@gmail.com', '$2a$10$QCkrQDn1vylaWgy.u/ytNeB0VkZwq/njBURahpZjVtDM9qy5K3acO');
 
 -- --------------------------------------------------------
@@ -130,7 +132,7 @@ CREATE TABLE `videojuego` (
 --
 
 INSERT INTO `videojuego` (`nombre`, `descripcion`, `genero`, `plataforma`, `precio`, `Imagen`) VALUES
-('Blasphemous', 'Un metroidvania de acción brutal ambientado en un mundo oscuro e inspirado en el folclore y el arte religioso español.', 'Acción, Metroidvania, Souls-like, Plataformas', 'PC, PS4, XBOX ONE', 24.99, 'images\\Blasphemous.jpg'),
+('Blasphemous', 'Un metroidvania de acción brutal ambientado en un mundo oscuro e inspirado en el folclore y el arte religioso español.', 'Acción, Metroidvania', 'PC', 26.99, 'images\\Blasphemous.jpg'),
 ('Cyberpunk 2077', 'Un juego de rol en un mundo futurista donde los jugadores asumen el papel de V, un mercenario en la ciudad distópica de Night City. El juego se caracteriza por su narrativa compleja y un mundo abierto lleno de decisiones y misiones.', 'RPG, Acción', 'PC, PlayStation 4, Xbox One, PlayStation 5, Xbox Series X/S', 59.99, 'images\\Cyberpunk 2077.jpg'),
 ('Dark Souls', '\"Dark Souls\" es un videojuego de rol y acción desarrollado por FromSoftware. Es conocido por su dificultad, diseño de niveles interconectados y su atmósfera oscura y sombría', 'RPG, Acción, Aventura', 'PS3, Xbox 360, PC', 29.99, 'images\\Dark souls 1.jpg'),
 ('Dark Souls II', 'La secuela del aclamado \"Dark Souls\", presenta un nuevo protagonista en un mundo igualmente brutal y lleno de desafíos. Con nuevas mecánicas y un sistema de combate refinado, \"Dark Souls II\" continúa la tradición de dificultad extrema y narrativa sutil', 'RPG, Acción, Aventura', 'PS3, Xbox 360, PC', 29.99, 'images\\dark souls 2.jpg'),
@@ -171,7 +173,17 @@ INSERT INTO `videojuegoscomprados` (`idJuegoComprado`, `emailUsuario`, `NombreJu
 (6, 'antonio@gmail.com', 'Elden Ring', 53.99, 53.99, 1),
 (7, 'antonio@gmail.com', 'Dark Souls', 28.49, 28.49, 1),
 (8, 'antonio@gmail.com', 'Cyberpunk 2077', 59.99, 119.98, 2),
-(9, 'antonio@gmail.com', 'Dark Souls II', 29.99, 29.99, 1);
+(9, 'antonio@gmail.com', 'Dark Souls II', 29.99, 29.99, 1),
+(10, 'antonio@gmail.com', 'Grand Theft Auto V', 35.99, 35.99, 1),
+(11, 'antonio@gmail.com', 'Minecraft', 25.16, 25.16, 1),
+(12, 'luis@gmail.com', 'Dark Souls II', 28.49, 28.49, 1),
+(13, 'luis@gmail.com', 'Cyberpunk 2077', 59.99, 59.99, 1),
+(14, 'luis@gmail.com', 'Hades', 24.99, 24.99, 1),
+(15, 'antonio@gmail.com', 'Hades', 24.99, 24.99, 1),
+(16, 'antonio@gmail.com', 'Hades', 22.49, 22.49, 1),
+(17, 'antonio@gmail.com', 'Grand Theft Auto V', 37.99, 37.99, 1),
+(18, 'antonio@gmail.com', 'Dark Souls III', 39.99, 39.99, 1),
+(19, 'antonio@gmail.com', 'Grand Theft Auto V', 39.99, 39.99, 1);
 
 --
 -- Índices para tablas volcadas
@@ -227,7 +239,8 @@ ALTER TABLE `videojuego`
 --
 ALTER TABLE `videojuegoscomprados`
   ADD PRIMARY KEY (`idJuegoComprado`),
-  ADD KEY `NombreJuego` (`NombreJuego`);
+  ADD KEY `NombreJuego` (`NombreJuego`),
+  ADD KEY `emailUsuario` (`emailUsuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -237,19 +250,19 @@ ALTER TABLE `videojuegoscomprados`
 -- AUTO_INCREMENT de la tabla `cestacompra`
 --
 ALTER TABLE `cestacompra`
-  MODIFY `idCesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `idCesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT de la tabla `tarjeta`
 --
 ALTER TABLE `tarjeta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `videojuegoscomprados`
 --
 ALTER TABLE `videojuegoscomprados`
-  MODIFY `idJuegoComprado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idJuegoComprado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas
@@ -290,7 +303,8 @@ ALTER TABLE `tarjetavip`
 -- Filtros para la tabla `videojuegoscomprados`
 --
 ALTER TABLE `videojuegoscomprados`
-  ADD CONSTRAINT `videojuegoscomprados_ibfk_1` FOREIGN KEY (`NombreJuego`) REFERENCES `videojuego` (`nombre`);
+  ADD CONSTRAINT `videojuegoscomprados_ibfk_1` FOREIGN KEY (`NombreJuego`) REFERENCES `videojuego` (`nombre`),
+  ADD CONSTRAINT `videojuegoscomprados_ibfk_2` FOREIGN KEY (`emailUsuario`) REFERENCES `usuario` (`email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
