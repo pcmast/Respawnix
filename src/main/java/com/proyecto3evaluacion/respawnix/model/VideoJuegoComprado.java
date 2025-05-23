@@ -23,12 +23,12 @@ public class VideoJuegoComprado {
         this.usuario.setEmail(email);
     }
 
-    public String getVideouego() {
-        return videoJuego.getNombre();
+    public VideoJuego getVideojuego() {
+        return videoJuego;
     }
 
-    public void setNombreJuego(String nombreJuego) {
-        videoJuego.setNombre(nombreJuego);
+    public void setJuego(VideoJuego juego) {
+        videoJuego = juego;
     }
 
     public double getPrecio() {
@@ -53,14 +53,6 @@ public class VideoJuegoComprado {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public VideoJuego getVideoJuego() {
-        return videoJuego;
-    }
-
-    public void setVideoJuego(VideoJuego videoJuego) {
-        this.videoJuego = videoJuego;
     }
 
     public double getPrecioTotal() {

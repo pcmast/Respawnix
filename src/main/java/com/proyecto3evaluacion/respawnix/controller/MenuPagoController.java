@@ -77,8 +77,11 @@ public class MenuPagoController {
             }
 
             VideoJuegoComprado videoJuegoComprado = new VideoJuegoComprado();
+            VideoJuego videoJuego = videoJuegoComprado.getVideojuego();
             videoJuegoComprado.setEmail(UsuarioActualController.getInstance().getUsuario().getEmail());
-            videoJuegoComprado.setNombreJuego(nombreJuego);
+
+            videoJuego.setNombre(nombreJuego);
+            videoJuegoComprado.setJuego(videoJuego);
             videoJuegoComprado.setCantidad(cantidad);
             videoJuegoComprado.setPrecioTotal(precioTotal);
             videoJuegoComprado.setPrecio(precio);
@@ -98,6 +101,7 @@ public class MenuPagoController {
             for (Tarjeta tarjeta : listaTarjetas) {
                 if (tarjeta.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
                     TarjetaDAO.tarjetaUsada(UsuarioActualController.getInstance().getUsuario().getEmail());
+                    UsuarioActualController.getInstance().getUsuario().setTarjeta(null);
                 }
             }
 

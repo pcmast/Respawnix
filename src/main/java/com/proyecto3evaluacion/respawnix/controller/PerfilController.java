@@ -43,11 +43,11 @@ public class PerfilController {
         email.setText(usuario.getEmail());
         List<Tarjeta> list = TarjetaDAO.todas();
         for (Tarjeta tarjeta : list) {
-
             if (tarjeta.getUsuario().getEmail().equals(UsuarioActualController.getInstance().getUsuario().getEmail())) {
                 File imagenURL = new File("images/COMPRAVIP.png");
                 Image image = new Image(imagenURL.toURI().toString());
                 imagenVIP.setImage(image);
+                UsuarioActualController.getInstance().getUsuario().setTarjeta(tarjeta);
                 VIP = true;
             }
         }

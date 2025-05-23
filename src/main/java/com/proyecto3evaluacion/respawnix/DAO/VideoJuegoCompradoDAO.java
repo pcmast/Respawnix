@@ -26,7 +26,9 @@ public class VideoJuegoCompradoDAO {
             while (rs.next()) {
 
                 VideoJuegoComprado videoJuego = new VideoJuegoComprado();
-                videoJuego.setNombreJuego(rs.getString("NombreJuego"));
+                VideoJuego videoJuego1 = videoJuego.getVideojuego();
+                videoJuego1.setNombre(rs.getString("NombreJuego"));
+                videoJuego.setJuego(videoJuego1);
                 videoJuego.setEmail(rs.getString("emailUsuario"));
                 videoJuego.setCantidad(rs.getInt("cantidad"));
                 videoJuego.setPrecio(rs.getDouble("precioJuego"));
@@ -52,7 +54,9 @@ public class VideoJuegoCompradoDAO {
             ResultSet rs = stmt.executeQuery(SQL_ALL);
             while (rs.next()) {
                 VideoJuegoComprado videoJuegoComprado = new VideoJuegoComprado();
-                videoJuegoComprado.setNombreJuego(rs.getString("NombreJuego"));
+                VideoJuego videoJuego1 = videoJuegoComprado.getVideojuego();
+                videoJuego1.setNombre(rs.getString("NombreJuego"));
+                videoJuegoComprado.setJuego(videoJuego1);
                 videoJuegoComprado.setPrecio(rs.getDouble("precioTotal"));
                 videoJuegoComprado.setCantidad(rs.getInt("cantidad"));
                 videoJuegoComprado.setEmail(rs.getString("emailUsuario"));

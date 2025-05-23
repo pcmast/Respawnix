@@ -18,11 +18,20 @@ public class Usuario {
     private String password;
     private ArrayList<VideoJuegoComprado> videojuegosComprados;
     private CestaCompra cesta;
+    private Tarjeta tarjeta;
 
 
     public Usuario() {
         videojuegosComprados = (ArrayList<VideoJuegoComprado>) VideoJuegoCompradoDAO.todosLosJuegosPorEmail(email);
 
+    }
+
+    public Tarjeta getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
     }
 
     public String getNombre() {
@@ -77,7 +86,7 @@ public class Usuario {
 
     public void annadir(VideoJuegoComprado videoJuegoComprado) {
         videojuegosComprados.add(videoJuegoComprado);
-        VideoJuegoCompradoDAO.insertarJuegoComprado(UsuarioActualController.getInstance().getUsuario().email, videoJuegoComprado.getVideouego(), videoJuegoComprado.getPrecio(), videoJuegoComprado.getPrecioTotal(), videoJuegoComprado.getCantidad());
+        VideoJuegoCompradoDAO.insertarJuegoComprado(UsuarioActualController.getInstance().getUsuario().email, videoJuegoComprado.getVideojuego().getNombre(), videoJuegoComprado.getPrecio(), videoJuegoComprado.getPrecioTotal(), videoJuegoComprado.getCantidad());
 
     }
 
