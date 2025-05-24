@@ -85,6 +85,10 @@ public class ActualizarJuegoController {
 
             VideoJuego videoJuego = new VideoJuego();
             videoJuego.setNombre(campoNombre.getText());
+            videoJuego.setDescripcion(campoDescripcion.getText());
+            videoJuego.setPlataforma(campoPlataforma.getText());
+            videoJuego.setPrecio(Double.valueOf(campoPrecio.getText()));
+            videoJuego.setGenero(campoGenero.getText());
 
            UsuarioActualController.getInstance().getUsuario().getCesta().actualizar(videoJuego);
 

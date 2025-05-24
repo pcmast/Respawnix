@@ -34,6 +34,7 @@ public class MenuPagoController {
     private TextField pais;
     @FXML
     private TextField telefono;
+
     private boolean vipBoolean = false;
     private boolean premium = false;
     private boolean bono = false;

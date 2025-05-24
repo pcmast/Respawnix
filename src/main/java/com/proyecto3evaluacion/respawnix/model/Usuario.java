@@ -84,12 +84,20 @@ public class Usuario {
         cesta = CestaCompra.getInstance();
     }
 
+    /**
+     * Metodo que añade un juego a los juegos comprados del usuario
+     * @param videoJuegoComprado videojuego que voy a añadir
+     */
     public void annadir(VideoJuegoComprado videoJuegoComprado) {
         videojuegosComprados.add(videoJuegoComprado);
         VideoJuegoCompradoDAO.insertarJuegoComprado(UsuarioActualController.getInstance().getUsuario().email, videoJuegoComprado.getVideojuego().getNombre(), videoJuegoComprado.getPrecio(), videoJuegoComprado.getPrecioTotal(), videoJuegoComprado.getCantidad());
 
     }
 
+    /**
+     * Metodo que consigue todos los juegos de la base de datos y los devuelve
+     * @return
+     */
     public ArrayList<VideoJuegoComprado> todosJuegos() {
         videojuegosComprados = (ArrayList<VideoJuegoComprado>) VideoJuegoCompradoDAO.todosLosJuegosPorEmail(this.email);
         return videojuegosComprados;

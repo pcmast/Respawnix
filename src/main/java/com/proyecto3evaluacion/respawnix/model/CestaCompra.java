@@ -37,26 +37,50 @@ public class CestaCompra implements CestaCompraInterfaz<VideoJuego> {
         this.usuario = usuario;
     }
 
+    /**
+     * Metodo que añade un videojuego a la lista de la compra
+     * @param juego el juego a insertar
+     * @param cantidad la cantidad de juegos
+     */
     public void annadir(VideoJuego juego, int cantidad) {
         videoJuego.put(juego.getNombre(),cantidad);
         CestaCompraDAO.actualizarEnLaLista(UsuarioActualController.getInstance().getUsuario().getEmail(),juego.getNombre(), cantidad);
 
     }
 
-    public void eliminar(VideoJuego juego, int resta){
+    /**
+     * Metodo que elimina un videojuego de la lista de la compra
+     * @param juego juego que va a eliminar
+     * @param cantidad es la cantidad
+     */
+    public void eliminar(VideoJuego juego, int cantidad){
             videoJuego.remove(juego.getNombre());
-            CestaCompraDAO.eliminarCestaOActualizar(UsuarioActualController.getInstance().getUsuario().getEmail(), juego.getNombre(), resta);
+            CestaCompraDAO.eliminarCestaOActualizar(UsuarioActualController.getInstance().getUsuario().getEmail(), juego.getNombre(), cantidad);
 
     }
 
+    /**
+     * Metodo que elimina un videojuego de la cesta con su descuento
+     * @param videoJuego videojuego a eliminar
+     * @param email email del usuario del pedido
+     */
     public void eliminarDescuento(VideoJuego videoJuego, String email){
             CestaCompraDAO.eliminarCesta(email,videoJuego.getNombre());
     }
 
+    /**
+     * Metodo que devuelve la cesta de la compra por el usuario actual
+     * @return devuelve un map con el nombre del juego y la cantidad
+     */
     public Map<String, Integer> todaCesta(){
-        videoJuego = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
+        //videoJuego = CestaCompraDAO.cesta(UsuarioActualController.getInstance().getUsuario().getEmail());
         return videoJuego;
     }
+
+    /**
+     * Metodo que actualiza un videojuego en la base de datos
+     * @param videoJuego videojuego a actualizar
+     */
     public void actualizar(VideoJuego videoJuego){
         CestaCompraDAO.actualizarNombre(videoJuego.getNombre());
 
